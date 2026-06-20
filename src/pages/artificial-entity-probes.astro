@@ -1,0 +1,249 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="ARTIFICIAL ENTITY PROBES" description="Artificial Entity Probes — interactive programmable artwork on Async.art by Bård Ionson">
+  <div class="aep-header">
+    <span class="tag">// ASYNC.ART · MASTER EDITION · 303 LAYERS</span>
+    <h1>ARTIFICIAL<br/>ENTITY<br/>PROBES</h1>
+    <p class="desc">
+      A programmable multi-edition artwork on Async.art. 303 unique pieces.
+      16 layers. 380,436 possible combinations. Each owner can control their layer —
+      the master artwork evolves as collectors update it.
+    </p>
+    <div class="specs">
+      <div class="spec-row"><span class="spec-k">PLATFORM</span><span class="spec-v">Async.art</span></div>
+      <div class="spec-row"><span class="spec-k">EDITIONS</span><span class="spec-v">303</span></div>
+      <div class="spec-row"><span class="spec-k">LAYERS</span><span class="spec-v">16</span></div>
+      <div class="spec-row"><span class="spec-k">COMBINATIONS</span><span class="spec-v">380,436</span></div>
+      <div class="spec-row"><span class="spec-k">MEDIUM</span><span class="spec-v">DCGAN · StyleGAN · Pix2Pix</span></div>
+    </div>
+  </div>
+
+  <div class="iframe-section">
+    <div class="iframe-label">
+      <span class="iframe-tag">// LIVE INTERACTIVE MASTER PIECE</span>
+      <p class="iframe-note">The artwork below is live and controllable. Layer owners can update their segments in real time.</p>
+    </div>
+    <div class="iframe-wrapper">
+      <iframe
+        src="https://async.art/v2/482?referrer=masters"
+        title="Artificial Entity Probes — Async.art Interactive Artwork"
+        allowfullscreen
+        loading="lazy"
+      ></iframe>
+    </div>
+    <div class="iframe-footer">
+      <a href="https://async.art/v2/482?referrer=masters" target="_blank" rel="noopener" class="btn-open">
+        Open on Async.art ↗
+      </a>
+    </div>
+  </div>
+
+  <div class="about-piece">
+    <div class="about-text">
+      <span class="tag">// ABOUT THE PIECE</span>
+      <h2>THE ENTITY RENDERS ITSELF</h2>
+      <p>
+        The Artificial Entity Probes series represents the Entity's attempts to communicate
+        with the human world using the only language it understood from 1959: machine signals,
+        oscilloscope traces, radar returns.
+      </p>
+      <p>
+        Each of the 303 editions contains a probe — a fragment of the Entity's consciousness
+        translated into visual form through DCGAN models trained on oscilloscope art, evolved
+        through StyleGAN, and refined through Pix2Pix image-to-image translation.
+      </p>
+      <p>
+        The artwork is not static. It lives on the Async.art programmable art platform,
+        where each layer responds to collector input. The master piece — the full Entity —
+        shifts as its component probes are updated.
+      </p>
+    </div>
+    <div class="about-art">
+      <img src="/images/representationOfTheEntityAR.gif" alt="Representation of The Entity in AR" />
+      <span class="art-label">Representation of The Entity · AR visualization</span>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .aep-header {
+    padding: 4rem;
+    border-bottom: 1px solid var(--border);
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .tag {
+    display: block;
+    font-size: 0.6rem;
+    color: var(--muted);
+    letter-spacing: 0.25em;
+    margin-bottom: 1rem;
+    grid-column: 1 / -1;
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 0.9;
+    color: var(--green);
+    text-shadow: 0 0 30px rgba(0,255,65,0.2);
+    letter-spacing: 0.02em;
+  }
+
+  .desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.85;
+  }
+
+  .specs {
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0;
+  }
+
+  .spec-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.75rem 1rem;
+    border-right: 1px solid var(--border);
+  }
+
+  .spec-row:last-child { border-right: none; }
+
+  .spec-k {
+    font-size: 0.6rem;
+    color: var(--muted);
+    letter-spacing: 0.2em;
+  }
+
+  .spec-v {
+    font-size: 0.85rem;
+    color: var(--green);
+  }
+
+  .iframe-section {
+    padding: 3rem 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .iframe-label {
+    max-width: 800px;
+    margin: 0 auto 1.5rem;
+  }
+
+  .iframe-tag {
+    display: block;
+    font-size: 0.6rem;
+    color: var(--muted);
+    letter-spacing: 0.25em;
+    margin-bottom: 0.5rem;
+  }
+
+  .iframe-note {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .iframe-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    aspect-ratio: 16/9;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .iframe-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .iframe-footer {
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+
+  .btn-open {
+    display: inline-block;
+    border: 1px solid var(--green);
+    color: var(--green);
+    padding: 0.7rem 1.5rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .btn-open:hover { background: rgba(0,255,65,0.05); }
+
+  .about-piece {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-top: 1px solid var(--border);
+  }
+
+  .about-text {
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .about-text h2 {
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    color: var(--text);
+    line-height: 1.2;
+  }
+
+  .about-text p {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.85;
+  }
+
+  .about-art {
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .about-art img {
+    width: 100%;
+    flex: 1;
+    object-fit: cover;
+    display: block;
+  }
+
+  .art-label {
+    padding: 0.5rem 1rem;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 900px) {
+    .aep-header { grid-template-columns: 1fr; padding: 2rem; gap: 1.5rem; }
+    .about-piece { grid-template-columns: 1fr; }
+    .about-text { padding: 2rem; }
+    .about-art { min-height: 300px; }
+  }
+</style>

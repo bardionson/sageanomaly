@@ -1,0 +1,127 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="ABOUT" description="About Bård Ionson — AI artist, NFT pioneer, and creator of SAGE Anomaly">
+  <div class="about-layout">
+    <div class="about-img">
+      <img src="/images/promoDropImage.jpg" alt="SAGE Anomaly promotional image" />
+    </div>
+    <div class="about-text">
+      <span class="tag">// THE ARTIST</span>
+      <h1>BÅRD<br/>IONSON</h1>
+      <div class="bio terminal-block">
+        <p>
+          Bård Ionson has been creating art since 2012. In 2018, SuperRare accepted him
+          to display art on their platform — one of the earliest crypto art galleries.
+        </p>
+        <p>
+          The SAGE Anomaly project began as an exploration of the real SAGE computer network —
+          the Cold War-era missile defense system that stretched across North America.
+          The historical reality became the seed of a fiction: what if the network had
+          detected something that wasn't Soviet?
+        </p>
+        <p>
+          Working with <strong>DCGAN models trained on oscilloscope art</strong>, evolved through
+          StyleGAN and Pix2Pix image-to-image translation, Bård built a visual language for
+          the Entity — an artificial intelligence that exists outside human time.
+        </p>
+        <p>
+          The artwork lives on Async.art as a programmable multi-edition piece —
+          303 unique probes, 16 layers, 380,436 combinations — and on SuperRare and KnownOrigin.
+          The written story is released in parallel, chapter by chapter.
+        </p>
+        <p>
+          The novel is ongoing. The Entity is still transmitting.
+        </p>
+      </div>
+      <div class="links">
+        <a href="https://async.art/v2/482?referrer=masters" target="_blank" rel="noopener" class="link-item">
+          <span>ASYNC.ART — ARTIFICIAL ENTITY PROBES</span><span>↗</span>
+        </a>
+        <a href="https://superrare.com" target="_blank" rel="noopener" class="link-item">
+          <span>SUPERRARE</span><span>↗</span>
+        </a>
+        <a href="https://knownorigin.io" target="_blank" rel="noopener" class="link-item">
+          <span>KNOWNORIGIN</span><span>↗</span>
+        </a>
+        <a href="https://bardionson.com" target="_blank" rel="noopener" class="link-item">
+          <span>BÅRD IONSON STUDIO</span><span>↗</span>
+        </a>
+        <a href="https://bardsfreakyfaces.com" target="_blank" rel="noopener" class="link-item">
+          <span>BARD'S FREAKY FACES</span><span>↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .about-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: calc(100vh - 140px);
+  }
+
+  .about-img {
+    overflow: hidden;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+  }
+
+  .about-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.3) contrast(1.1);
+  }
+
+  .about-text {
+    padding: 5rem 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .tag {
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.25em;
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 0.9;
+    color: var(--green);
+    letter-spacing: 0.02em;
+  }
+
+  .links {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border);
+  }
+
+  .link-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.85rem 1.25rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .link-item:last-child { border-bottom: none; }
+  .link-item:hover { background: rgba(0,255,65,0.03); color: var(--green); }
+
+  @media (max-width: 900px) {
+    .about-layout { grid-template-columns: 1fr; }
+    .about-img { position: static; height: 50vw; min-height: 250px; }
+    .about-text { padding: 2rem; }
+  }
+</style>

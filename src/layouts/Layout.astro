@@ -1,0 +1,277 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = "SAGE Anomaly — AI art, NFT, and a sci-fi novel by Bård Ionson. The Entity is watching." } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="/images/cropped-CosmicNeuralNetwork-1.gif" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content={description} />
+  <title>{title} | SAGE Anomaly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="crt-overlay" aria-hidden="true"></div>
+  <nav>
+    <a href="/" class="nav-logo">
+      <span class="logo-bracket">[</span>SAGE<span class="logo-dot">::</span>ANOMALY<span class="logo-bracket">]</span>
+    </a>
+    <ul>
+      <li><a href="/">HOME</a></li>
+      <li><a href="/story">STORY</a></li>
+      <li><a href="/art">ART</a></li>
+      <li><a href="/artificial-entity-probes">THE ENTITY</a></li>
+      <li><a href="/prints">PRINTS</a></li>
+      <li><a href="/movie">FILM</a></li>
+      <li><a href="/about">ABOUT</a></li>
+    </ul>
+    <div class="nav-signal">
+      <span class="signal-dot"></span>
+      <span class="signal-text">ENTITY ACTIVE</span>
+    </div>
+  </nav>
+  <main>
+    <slot />
+  </main>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-left">
+        <p class="footer-logo">[SAGE::ANOMALY]</p>
+        <p class="footer-sub">© Bård Ionson · First contact protocol initiated</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://async.art/v2/482?referrer=masters" target="_blank" rel="noopener">Async.art ↗</a>
+        <a href="https://superrare.com" target="_blank" rel="noopener">SuperRare ↗</a>
+        <a href="https://knownorigin.io" target="_blank" rel="noopener">KnownOrigin ↗</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
+
+<style is:global>
+  :root {
+    --bg: #020808;
+    --bg2: #040d0d;
+    --green: #00ff41;
+    --green-dim: #00a829;
+    --green-dark: #003810;
+    --amber: #ffb300;
+    --text: #c8d8c8;
+    --muted: #4a6a4a;
+    --border: #0a1f0a;
+    --font-mono: 'Share Tech Mono', monospace;
+    --font-head: 'Orbitron', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-mono);
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(ellipse at 20% 50%, rgba(0,255,65,0.03) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(0,255,65,0.02) 0%, transparent 50%);
+  }
+
+  .crt-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    background:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.04) 2px,
+        rgba(0,0,0,0.04) 4px
+      );
+    animation: flicker 8s infinite;
+  }
+
+  @keyframes flicker {
+    0%, 97%, 100% { opacity: 1; }
+    98% { opacity: 0.97; }
+    99% { opacity: 1; }
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: rgba(2,8,8,0.96);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+  }
+
+  .nav-logo {
+    font-family: var(--font-head);
+    font-size: 0.8rem;
+    color: var(--green);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 15px var(--green);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .logo-bracket { color: var(--muted); }
+  .logo-dot { color: var(--green-dim); }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    flex: 1;
+  }
+
+  nav ul a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    transition: color 0.2s, text-shadow 0.2s;
+  }
+
+  nav ul a:hover {
+    color: var(--green);
+    text-shadow: 0 0 8px var(--green);
+  }
+
+  .nav-signal {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .signal-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 8px var(--green);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .signal-text {
+    font-size: 0.6rem;
+    color: var(--muted);
+    letter-spacing: 0.2em;
+  }
+
+  main { min-height: calc(100vh - 140px); }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+  }
+
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-logo {
+    color: var(--green);
+    font-size: 0.8rem;
+    text-shadow: 0 0 8px var(--green);
+    margin-bottom: 0.25rem;
+  }
+
+  .footer-sub {
+    color: var(--muted);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .footer-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--green); }
+
+  h1, h2, h3 { font-family: var(--font-head); }
+
+  a { color: var(--green-dim); }
+
+  /* Terminal block style */
+  .terminal-block {
+    background: rgba(0,255,65,0.03);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--green-dim);
+    padding: 1.5rem;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: var(--text);
+  }
+
+  .terminal-block p + p { margin-top: 1rem; }
+  .terminal-block img { max-width: 100%; margin: 1.5rem 0; border: 1px solid var(--border); }
+  .terminal-block h2, .terminal-block h3 {
+    color: var(--green);
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    margin: 1.5rem 0 0.75rem;
+    text-transform: uppercase;
+  }
+  .terminal-block a { color: var(--green); }
+  .terminal-block strong { color: var(--amber); }
+  .terminal-block em { color: var(--text); font-style: italic; }
+  .terminal-block ul, .terminal-block ol { padding-left: 1.5rem; }
+  .terminal-block li { margin: 0.5rem 0; }
+  .terminal-block figure { margin: 1.5rem 0; }
+  .terminal-block figcaption {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 0.5rem;
+    letter-spacing: 0.1em;
+  }
+  .terminal-block blockquote {
+    border-left: 2px solid var(--green-dim);
+    padding-left: 1rem;
+    color: var(--muted);
+    margin: 1rem 0;
+  }
+
+  @media (max-width: 900px) {
+    nav { flex-wrap: wrap; gap: 0.5rem; }
+    nav ul { gap: 0.75rem; flex-wrap: wrap; }
+    .nav-signal { display: none; }
+    .footer-inner { flex-direction: column; gap: 1.5rem; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+  }
+</style>

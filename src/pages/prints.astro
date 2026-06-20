@@ -1,0 +1,58 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="PRINTS" description="Order prints from SAGE Anomaly and Simulation Number 89 by Bård Ionson">
+  <div class="prints-header">
+    <span class="tag">// PHYSICAL EDITIONS</span>
+    <h1>PRINTS</h1>
+    <p class="desc">
+      Order physical prints from the SAGE Anomaly and Simulation Number 89 collections.
+      Fine art prints available through Fine Art America.
+    </p>
+  </div>
+  <div class="prints-embed">
+    <script type="text/javascript" src="https://fineartamerica.com/widgetshoppingcart/widgetscripts.php"></script>
+    <iframe
+      id="pixelsshoppingcartiframe"
+      src="https://fineartamerica.com/widgetshoppingcart/artwork.html?memberidtype=artistid&memberid=624902&domainid=0&showheader=0&height=600&autoheight=true"
+      style="display: inline-block; width: 100%; min-height: 820px; border: none; overflow: hidden;"
+      title="SAGE Anomaly Prints — Fine Art America"
+      loading="lazy"
+    ></iframe>
+  </div>
+</Layout>
+
+<style>
+  .prints-header {
+    padding: 4rem 2rem 3rem;
+    border-bottom: 1px solid var(--border);
+    max-width: 800px;
+  }
+
+  .tag {
+    display: block;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.25em;
+    margin-bottom: 0.75rem;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    color: var(--green);
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+  }
+
+  .desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.85;
+    max-width: 500px;
+  }
+
+  .prints-embed {
+    padding: 2rem;
+    background: #fff;
+  }
+</style>

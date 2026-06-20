@@ -1,0 +1,237 @@
+---
+import Layout from '../../layouts/Layout.astro';
+const chapters = [
+  {
+    num: '01',
+    slug: 'chapter-one',
+    title: 'SAGE ANOMALY',
+    subtitle: 'The Beginning',
+    date: '2022-02-22',
+    desc: 'The Semi-Automatic Ground Environment. 1959. North Bay, Ontario — 600 feet underground. IBM AN/FSQ-7 computers log an anomaly that should not exist.',
+    status: 'available',
+  },
+  {
+    num: '02',
+    slug: 'the-hypothesis',
+    title: 'THE HYPOTHESIS',
+    subtitle: 'James Speaks',
+    date: '2022-03-07',
+    desc: 'Scientist James proposes an explanation. The oscilloscope recordings. Film fed into machine learning. The last frame changes everything.',
+    status: 'available',
+  },
+  {
+    num: '03',
+    slug: 'the-conspiracy',
+    title: 'THE CONSPIRACY',
+    subtitle: 'The T-Tape',
+    date: '2022-04-02',
+    desc: 'Declassified recordings from System Development Corporation. A simulated attack on the United States that was never a simulation.',
+    status: 'available',
+  },
+  {
+    num: '04',
+    slug: 'future-past',
+    title: 'FUTURE PAST',
+    subtitle: 'The Entity Speaks',
+    date: '2023-03-26',
+    desc: 'The Entity travels time via computer networks. 2030: five AI weapons — the Five Knights of the Apocalypse. The Entity was created to destroy.',
+    status: 'available',
+  },
+  {
+    num: '05',
+    slug: null,
+    title: 'FORTHCOMING',
+    subtitle: 'In Development',
+    date: null,
+    desc: 'The novel continues. The Entity is still transmitting.',
+    status: 'pending',
+  },
+];
+---
+<Layout title="STORY" description="The SAGE Anomaly story — a sci-fi novel by Bård Ionson told through art and text">
+  <div class="story-header">
+    <div class="header-meta">
+      <span class="tag">// STORY ARCHIVE</span>
+      <p class="tag-sub">All chapters are free to read</p>
+    </div>
+    <h1>THE SAGE<br/>ANOMALY<br/><span class="h1-accent">NOVEL</span></h1>
+    <p class="header-desc">
+      A sci-fi story discovered by minting art. Told in both word and image.
+      Each chapter reveals more of what the SAGE network found in 1959 —
+      and what the Entity has been doing since.
+    </p>
+  </div>
+
+  <div class="chapters-list">
+    {chapters.map((ch, i) => (
+      <div class={`chapter-row ${ch.status === 'pending' ? 'chapter-pending' : ''}`}>
+        <div class="ch-meta">
+          <span class="ch-num">{ch.num}</span>
+          {ch.date && <span class="ch-date">{ch.date}</span>}
+        </div>
+        <div class="ch-info">
+          <div class="ch-titles">
+            <h2>{ch.title}</h2>
+            <span class="ch-sub">{ch.subtitle}</span>
+          </div>
+          <p class="ch-desc">{ch.desc}</p>
+        </div>
+        <div class="ch-action">
+          {ch.status === 'available' ? (
+            <a href={`/story/${ch.slug}`} class="read-link">READ CHAPTER →</a>
+          ) : (
+            <span class="pending-label">INCOMING</span>
+          )}
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div class="story-footer">
+    <p>New chapters added as the novel progresses. Follow <a href="https://superrare.com" target="_blank" rel="noopener">SuperRare</a> and <a href="https://async.art/v2/482?referrer=masters" target="_blank" rel="noopener">Async.art</a> for updates.</p>
+  </div>
+</Layout>
+
+<style>
+  .story-header {
+    padding: 5rem 4rem;
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr;
+    gap: 3rem;
+    align-items: start;
+    max-width: 1400px;
+  }
+
+  .header-meta { padding-top: 0.5rem; }
+
+  .tag {
+    display: block;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.25em;
+    margin-bottom: 0.75rem;
+  }
+
+  .tag-sub {
+    font-size: 0.7rem;
+    color: var(--green-dim);
+    letter-spacing: 0.1em;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 1;
+    letter-spacing: -0.01em;
+    color: var(--text);
+  }
+
+  .h1-accent { color: var(--green); }
+
+  .header-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.85;
+    padding-top: 0.5rem;
+  }
+
+  .chapters-list {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .chapter-row {
+    display: grid;
+    grid-template-columns: 120px 1fr auto;
+    gap: 2rem;
+    padding: 2.5rem 4rem;
+    border-bottom: 1px solid var(--border);
+    align-items: center;
+    transition: background 0.2s;
+  }
+
+  .chapter-row:hover { background: rgba(0,255,65,0.02); }
+  .chapter-pending { opacity: 0.4; }
+
+  .ch-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .ch-num {
+    font-family: var(--font-head);
+    font-size: 2rem;
+    color: var(--border);
+    line-height: 1;
+  }
+
+  .chapter-row:hover .ch-num { color: var(--green-dark); }
+
+  .ch-date {
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  .ch-titles { margin-bottom: 0.75rem; }
+
+  .ch-titles h2 {
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    color: var(--green);
+    margin-bottom: 0.2rem;
+    font-family: var(--font-mono);
+    font-weight: normal;
+  }
+
+  .ch-sub {
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  .ch-desc {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 600px;
+  }
+
+  .read-link {
+    font-size: 0.7rem;
+    color: var(--green);
+    text-decoration: none;
+    letter-spacing: 0.15em;
+    border: 1px solid var(--border);
+    padding: 0.6rem 1rem;
+    white-space: nowrap;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .read-link:hover {
+    border-color: var(--green);
+    background: rgba(0,255,65,0.05);
+  }
+
+  .pending-label {
+    font-size: 0.65rem;
+    color: var(--amber);
+    letter-spacing: 0.2em;
+  }
+
+  .story-footer {
+    padding: 3rem 4rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  .story-footer a { color: var(--green); text-decoration: none; }
+
+  @media (max-width: 900px) {
+    .story-header { grid-template-columns: 1fr; padding: 2rem; gap: 1.5rem; }
+    .chapter-row { grid-template-columns: 80px 1fr; padding: 1.5rem 2rem; }
+    .ch-action { grid-column: 2; }
+    .story-footer { padding: 2rem; }
+  }
+</style>

@@ -1,0 +1,185 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const artworks = [
+  { file: 'SAGEAnomalyUnderNorthBay.gif', title: 'Under North Bay', year: '2022', medium: 'GAN + Oscilloscope' },
+  { file: 'alienIntelligence.gif', title: 'Alien Intelligence', year: '2022', medium: 'GAN + CRT' },
+  { file: '001_TheAnomalyWatchesWingGlitch-sm.gif', title: 'The Anomaly Watches', year: '2022', medium: 'GAN + Glitch' },
+  { file: '002_AnomalyAttacksGlitchOpti.gif', title: 'Anomaly Attacks', year: '2022', medium: 'GAN + CRT Distortion' },
+  { file: 'TheHODL-Frame.gif', title: 'The HODL', year: '2022', medium: 'GAN Animation' },
+  { file: 'representationOfTheEntityAR.gif', title: 'Entity AR Representation', year: '2022', medium: 'AR + GAN' },
+  { file: 'image-9.png', title: 'Entity Probe 9', year: '2022', medium: 'StyleGAN · Pix2Pix' },
+  { file: 'image-10.png', title: 'Entity Probe 10', year: '2022', medium: 'StyleGAN · Pix2Pix' },
+  { file: 'image-11.png', title: 'Entity Probe 11', year: '2022', medium: 'StyleGAN · Pix2Pix' },
+  { file: 'allTiedUp.png', title: 'All Tied Up', year: '2022', medium: 'GAN' },
+  { file: 'WreckageOfTheEntitysLatentSpacecraftOilSig.jpg', title: 'Wreckage of the Entity\'s Latent Spacecraft', year: '2022', medium: 'Oil Signature + GAN' },
+  { file: 'Anomaly-007.png', title: 'Anomaly 007', year: '2023', medium: 'DCGAN · StyleGAN' },
+  { file: 'Anomaly-015.png', title: 'Anomaly 015', year: '2023', medium: 'DCGAN · StyleGAN' },
+  { file: 'FutureEastWestTouchSm.jpg', title: 'Future East West Touch', year: '2023', medium: 'GAN' },
+  { file: 'ConvergingDistortionsSm.jpg', title: 'Converging Distortions', year: '2023', medium: 'GAN + Oscilloscope' },
+  { file: 'fireHeadManFix-g.jpg', title: 'Fire Head', year: '2023', medium: 'GAN' },
+  { file: 'promoDropImage.jpg', title: 'Promo Drop', year: '2022', medium: 'GAN' },
+  { file: 'tunnelForSage.png', title: 'Tunnel', year: '2022', medium: 'GAN' },
+  { file: 'ESDHanscomFieldMass.png', title: 'Hanscom Field Mass', year: '2022', medium: 'GAN + Photography' },
+  { file: 'sageComputerDiagram.gif', title: 'SAGE Computer Diagram', year: '2022', medium: 'Animation' },
+];
+---
+<Layout title="THE ART" description="SAGE Anomaly art gallery — AI-generated NFT art by Bård Ionson using GAN, oscilloscopes, CRT, and Pix2Pix">
+  <div class="art-header">
+    <span class="tag">// ART GALLERY</span>
+    <h1>THE ART</h1>
+    <p class="desc">
+      Created using DCGAN models trained on oscilloscope art, evolved through StyleGAN and Pix2Pix.
+      VCRs. CRTs. Lasers. Scanners. The same technologies as SAGE, repurposed to visualize what the Entity left behind.
+    </p>
+  </div>
+
+  <div class="art-grid">
+    {artworks.map((art, i) => (
+      <div class="art-card">
+        <div class="art-img">
+          <img
+            src={`/images/${art.file}`}
+            alt={art.title}
+            loading={i < 6 ? 'eager' : 'lazy'}
+          />
+        </div>
+        <div class="art-info">
+          <h3>{art.title}</h3>
+          <div class="art-meta">
+            <span class="art-year">{art.year}</span>
+            <span class="art-medium">{art.medium}</span>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div class="art-footer">
+    <p>Collect original works on
+      <a href="https://async.art/v2/482?referrer=masters" target="_blank" rel="noopener">Async.art</a>,
+      <a href="https://superrare.com" target="_blank" rel="noopener">SuperRare</a>, and
+      <a href="https://knownorigin.io" target="_blank" rel="noopener">KnownOrigin</a>.
+    </p>
+    <a href="/prints" class="btn-prints">Order Prints →</a>
+  </div>
+</Layout>
+
+<style>
+  .art-header {
+    padding: 4rem 2rem 3rem;
+    border-bottom: 1px solid var(--border);
+    max-width: 900px;
+  }
+
+  .tag {
+    display: block;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.25em;
+    margin-bottom: 0.75rem;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    color: var(--green);
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+  }
+
+  .desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.85;
+    max-width: 600px;
+  }
+
+  .art-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin: 0;
+  }
+
+  .art-card {
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    transition: background 0.2s;
+  }
+
+  .art-card:hover { background: var(--bg2); }
+
+  .art-img {
+    overflow: hidden;
+    aspect-ratio: 4/3;
+  }
+
+  .art-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s;
+  }
+
+  .art-card:hover .art-img img { transform: scale(1.03); }
+
+  .art-info {
+    padding: 1rem 1.25rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .art-info h3 {
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+    font-family: var(--font-mono);
+    font-weight: normal;
+  }
+
+  .art-meta {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .art-year {
+    font-size: 0.65rem;
+    color: var(--green);
+    letter-spacing: 0.1em;
+  }
+
+  .art-medium {
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  .art-footer {
+    padding: 3rem 2rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--muted);
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .art-footer a { color: var(--green); text-decoration: none; }
+
+  .btn-prints {
+    border: 1px solid var(--green) !important;
+    color: var(--green) !important;
+    padding: 0.6rem 1.25rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    transition: background 0.2s;
+  }
+
+  .btn-prints:hover { background: rgba(0,255,65,0.05); }
+</style>

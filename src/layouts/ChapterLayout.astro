@@ -1,0 +1,165 @@
+---
+interface Props {
+  title: string;
+  chapterNum: string;
+  subtitle: string;
+  date: string;
+  prevChapter?: { slug: string; title: string };
+  nextChapter?: { slug: string; title: string };
+}
+const { title, chapterNum, subtitle, date, prevChapter, nextChapter } = Astro.props;
+import Layout from './Layout.astro';
+---
+<Layout title={`Chapter ${chapterNum}: ${title}`}>
+  <div class="chapter-header">
+    <a href="/story" class="back-link">← STORY ARCHIVE</a>
+    <div class="ch-meta">
+      <span class="ch-num-label">CHAPTER {chapterNum}</span>
+      <span class="ch-date">{date}</span>
+    </div>
+    <h1>{title}</h1>
+    <p class="ch-subtitle">{subtitle}</p>
+  </div>
+
+  <div class="chapter-body">
+    <div class="chapter-content terminal-block">
+      <slot />
+    </div>
+  </div>
+
+  <nav class="chapter-nav">
+    <div class="nav-prev">
+      {prevChapter && (
+        <a href={`/story/${prevChapter.slug}`}>
+          <span class="nav-label">← PREVIOUS</span>
+          <span class="nav-title">{prevChapter.title}</span>
+        </a>
+      )}
+    </div>
+    <a href="/story" class="nav-index">ALL CHAPTERS</a>
+    <div class="nav-next">
+      {nextChapter && (
+        <a href={`/story/${nextChapter.slug}`}>
+          <span class="nav-label">NEXT →</span>
+          <span class="nav-title">{nextChapter.title}</span>
+        </a>
+      )}
+    </div>
+  </nav>
+</Layout>
+
+<style>
+  .chapter-header {
+    padding: 4rem 2rem 3rem;
+    max-width: 800px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .back-link {
+    display: inline-block;
+    font-size: 0.65rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.2em;
+    margin-bottom: 2rem;
+    transition: color 0.2s;
+  }
+
+  .back-link:hover { color: var(--green); }
+
+  .ch-meta {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .ch-num-label {
+    font-size: 0.65rem;
+    color: var(--green);
+    letter-spacing: 0.3em;
+  }
+
+  .ch-date {
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  h1 {
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    line-height: 1.1;
+    color: var(--green);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+
+  .ch-subtitle {
+    font-size: 0.8rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .chapter-body {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+  }
+
+  .chapter-nav {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 1rem;
+    padding: 2rem;
+    border-top: 1px solid var(--border);
+    max-width: 900px;
+    margin: 0 auto;
+    align-items: center;
+  }
+
+  .nav-prev, .nav-next {
+    display: flex;
+  }
+
+  .nav-next { justify-content: flex-end; }
+
+  .nav-prev a, .nav-next a {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    text-decoration: none;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border);
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .nav-prev a:hover, .nav-next a:hover {
+    border-color: var(--green);
+    background: rgba(0,255,65,0.03);
+  }
+
+  .nav-label {
+    font-size: 0.6rem;
+    color: var(--muted);
+    letter-spacing: 0.2em;
+  }
+
+  .nav-title {
+    font-size: 0.75rem;
+    color: var(--green);
+    letter-spacing: 0.1em;
+  }
+
+  .nav-index {
+    font-size: 0.65rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.2em;
+    text-align: center;
+    padding: 0.5rem;
+    transition: color 0.2s;
+  }
+
+  .nav-index:hover { color: var(--green); }
+</style>

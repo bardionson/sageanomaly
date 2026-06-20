@@ -1,0 +1,245 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="FILM" description="SAGE Anomaly — the AI film. Coming soon.">
+  <div class="movie-layout">
+    <div class="movie-bg">
+      <img src="/images/002_AnomalyAttacksGlitchOpti.gif" alt="" aria-hidden="true" />
+    </div>
+    <div class="movie-content">
+      <div class="transmission-header">
+        <span class="tx">// INCOMING SIGNAL</span>
+        <div class="signal-bars">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+
+      <h1>THE<br/><span class="h1-accent">ENTITY</span><br/>FILM</h1>
+
+      <div class="status-block">
+        <div class="status-row">
+          <span class="sk">PROJECT STATUS</span>
+          <span class="sv sv-warn">IN DEVELOPMENT</span>
+        </div>
+        <div class="status-row">
+          <span class="sk">MEDIUM</span>
+          <span class="sv">AI-GENERATED FILM</span>
+        </div>
+        <div class="status-row">
+          <span class="sk">RELEASE</span>
+          <span class="sv">TBA</span>
+        </div>
+        <div class="status-row">
+          <span class="sk">BASED ON</span>
+          <span class="sv">SAGE ANOMALY NOVEL</span>
+        </div>
+      </div>
+
+      <p class="movie-desc">
+        The SAGE Anomaly story is being developed as an AI-generated film.
+        The Entity's visual language — oscilloscope art processed through GAN models —
+        will form the visual backbone of a feature-length narrative.
+      </p>
+
+      <p class="movie-desc">
+        Early footage from the Vimeo channel shows what the film will look like.
+        New material released as chapters are completed.
+      </p>
+
+      <div class="ctas">
+        <a href="https://vimeo.com/479329386" target="_blank" rel="noopener" class="btn-primary">
+          Watch Early Footage on Vimeo ↗
+        </a>
+        <a href="/story" class="btn-ghost">Read the Story First</a>
+      </div>
+
+      <div class="notify-block">
+        <p class="notify-label">// STAY UPDATED</p>
+        <p>Follow the project on Async.art and SuperRare for film release announcements.</p>
+        <div class="notify-links">
+          <a href="https://async.art/v2/482?referrer=masters" target="_blank" rel="noopener">Async.art ↗</a>
+          <a href="https://superrare.com" target="_blank" rel="noopener">SuperRare ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .movie-layout {
+    min-height: calc(100vh - 140px);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .movie-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .movie-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.08;
+    filter: hue-rotate(100deg) saturate(1.5);
+  }
+
+  .movie-content {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    padding: 6rem 2rem;
+    width: 100%;
+  }
+
+  .transmission-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .tx {
+    font-size: 0.65rem;
+    color: var(--green);
+    letter-spacing: 0.25em;
+  }
+
+  .signal-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 20px;
+  }
+
+  .signal-bars span {
+    width: 3px;
+    background: var(--green);
+    opacity: 0.6;
+    animation: bar-pulse 1.2s ease-in-out infinite;
+  }
+
+  .signal-bars span:nth-child(1) { height: 30%; animation-delay: 0s; }
+  .signal-bars span:nth-child(2) { height: 55%; animation-delay: 0.1s; }
+  .signal-bars span:nth-child(3) { height: 80%; animation-delay: 0.2s; }
+  .signal-bars span:nth-child(4) { height: 55%; animation-delay: 0.3s; }
+  .signal-bars span:nth-child(5) { height: 30%; animation-delay: 0.4s; }
+
+  @keyframes bar-pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  h1 {
+    font-size: clamp(3rem, 8vw, 6rem);
+    line-height: 0.9;
+    color: var(--text);
+    letter-spacing: -0.01em;
+    margin-bottom: 2rem;
+  }
+
+  .h1-accent { color: var(--green); text-shadow: 0 0 20px rgba(0,255,65,0.4); }
+
+  .status-block {
+    border: 1px solid var(--border);
+    padding: 0;
+    margin-bottom: 2rem;
+  }
+
+  .status-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.65rem 1rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+  }
+
+  .status-row:last-child { border-bottom: none; }
+
+  .sk { color: var(--muted); }
+  .sv { color: var(--text); }
+  .sv-warn { color: var(--amber); }
+
+  .movie-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.85;
+    margin-bottom: 1.25rem;
+  }
+
+  .ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+
+  .btn-primary {
+    background: var(--green);
+    color: #000;
+    padding: 0.7rem 1.5rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: var(--amber); color: #000; }
+
+  .btn-ghost {
+    border: 1px solid var(--muted);
+    color: var(--text);
+    padding: 0.7rem 1.5rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-ghost:hover { border-color: var(--green); color: var(--green); }
+
+  .notify-block {
+    border-top: 1px solid var(--border);
+    padding-top: 2rem;
+  }
+
+  .notify-label {
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.2em;
+    margin-bottom: 0.75rem;
+  }
+
+  .notify-block > p {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .notify-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .notify-links a {
+    font-size: 0.75rem;
+    color: var(--green);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    border: 1px solid var(--border);
+    padding: 0.5rem 1rem;
+    transition: border-color 0.2s;
+  }
+
+  .notify-links a:hover { border-color: var(--green); }
+</style>
