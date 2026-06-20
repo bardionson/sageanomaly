@@ -57,15 +57,15 @@ const { title, description = "SAGE Anomaly — AI art, NFT, and a sci-fi novel b
 
 <style is:global>
   :root {
-    --bg: #020808;
-    --bg2: #040d0d;
+    --bg: #050e08;
+    --bg2: #091408;
     --green: #00ff41;
-    --green-dim: #00a829;
-    --green-dark: #003810;
-    --amber: #ffb300;
-    --text: #c8d8c8;
-    --muted: #4a6a4a;
-    --border: #0a1f0a;
+    --green-dim: #3ddc6e;
+    --green-dark: #1a4a20;
+    --amber: #ffc840;
+    --text: #ddeedd;
+    --muted: #90b890;
+    --border: #1a3a1a;
     --font-mono: 'Share Tech Mono', monospace;
     --font-head: 'Orbitron', monospace;
   }
@@ -78,11 +78,13 @@ const { title, description = "SAGE Anomaly — AI art, NFT, and a sci-fi novel b
     background: var(--bg);
     color: var(--text);
     font-family: var(--font-mono);
+    font-size: 1rem;
+    line-height: 1.7;
     min-height: 100vh;
     overflow-x: hidden;
     background-image:
-      radial-gradient(ellipse at 20% 50%, rgba(0,255,65,0.03) 0%, transparent 60%),
-      radial-gradient(ellipse at 80% 20%, rgba(0,255,65,0.02) 0%, transparent 50%);
+      radial-gradient(ellipse at 20% 50%, rgba(0,255,65,0.04) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(0,255,65,0.03) 0%, transparent 50%);
   }
 
   .crt-overlay {
@@ -94,9 +96,9 @@ const { title, description = "SAGE Anomaly — AI art, NFT, and a sci-fi novel b
       repeating-linear-gradient(
         0deg,
         transparent,
-        transparent 2px,
-        rgba(0,0,0,0.04) 2px,
-        rgba(0,0,0,0.04) 4px
+        transparent 3px,
+        rgba(0,0,0,0.02) 3px,
+        rgba(0,0,0,0.02) 4px
       );
     animation: flicker 8s infinite;
   }
@@ -144,8 +146,8 @@ const { title, description = "SAGE Anomaly — AI art, NFT, and a sci-fi novel b
   nav ul a {
     color: var(--muted);
     text-decoration: none;
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
     transition: color 0.2s, text-shadow 0.2s;
   }
 
@@ -176,9 +178,9 @@ const { title, description = "SAGE Anomaly — AI art, NFT, and a sci-fi novel b
   }
 
   .signal-text {
-    font-size: 0.6rem;
+    font-size: 0.9rem;
     color: var(--muted);
-    letter-spacing: 0.2em;
+    letter-spacing: 0.15em;
   }
 
   main { min-height: calc(100vh - 140px); }
@@ -205,8 +207,8 @@ const { title, description = "SAGE Anomaly — AI art, NFT, and a sci-fi novel b
 
   .footer-sub {
     color: var(--muted);
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
   }
 
   .footer-links {
@@ -217,8 +219,8 @@ const { title, description = "SAGE Anomaly — AI art, NFT, and a sci-fi novel b
   .footer-links a {
     color: var(--muted);
     text-decoration: none;
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
     transition: color 0.2s;
   }
 
@@ -230,12 +232,12 @@ const { title, description = "SAGE Anomaly — AI art, NFT, and a sci-fi novel b
 
   /* Terminal block style */
   .terminal-block {
-    background: rgba(0,255,65,0.03);
+    background: rgba(0,255,65,0.04);
     border: 1px solid var(--border);
     border-left: 3px solid var(--green-dim);
     padding: 1.5rem;
-    font-size: 0.9rem;
-    line-height: 1.8;
+    font-size: 1rem;
+    line-height: 1.9;
     color: var(--text);
   }
 
@@ -255,10 +257,10 @@ const { title, description = "SAGE Anomaly — AI art, NFT, and a sci-fi novel b
   .terminal-block li { margin: 0.5rem 0; }
   .terminal-block figure { margin: 1.5rem 0; }
   .terminal-block figcaption {
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     color: var(--muted);
     margin-top: 0.5rem;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
   }
   .terminal-block blockquote {
     border-left: 2px solid var(--green-dim);
