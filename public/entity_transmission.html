@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAGE-66 // INCOMING TRANSMISSION</title>
+<style>
+  :root {
+    --bg: #0A0F1E;
+    --green: #00FF41;
+    --red: #FF0041;
+    --blue: #4169E1;
+    --sepia: #C8A96A;
+    --dim: #004F14;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; cursor: crosshair; }
+
+  html, body {
+    height: 100%;
+    background: var(--bg);
+    overflow: hidden;
+    font-family: "Courier New", Courier, monospace;
+  }
+
+  /* ---- CRT shell ---- */
+  #crt {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, #0D1428 0%, var(--bg) 70%);
+  }
+
+  /* Scanlines */
+  #crt::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.22) 0px,
+      rgba(0, 0, 0, 0.22) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+    pointer-events: none;
+    z-index: 50;
+  }
+
+  /* Vignette + curvature suggestion */
+  #crt::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.65) 100%);
+    pointer-events: none;
+    z-index: 51;
+  }
+
+  /* Rolling scan bar */
+  #scanbar {
+    position: absolute;
+    left: 0; right: 0;
+    height: 90px;
+    background: linear-gradient(180deg, transparent, rgba(0,255,65,0.05), transparent);
+    animation: roll 7s linear infinite;
+    pointer-events: none;
+    z-index: 49;
+  }
+  @keyframes roll {
+    0%   { top: -90px; }
+    100% { top: 100%; }
+  }
+
+  /* ---- Triune lights ---- */
+  #lights {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+  .orb {
+    position: absolute;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    opacity: 0;
+    filter: blur(1px);
+  }
+  .orb.red   { background: var(--red);   box-shadow: 0 0 30px 8px rgba(255,0,65,0.5); }
+  .orb.blue  { background: var(--blue);  box-shadow: 0 0 30px 8px rgba(65,105,225,0.5); }
+  .orb.green { background: var(--green); box-shadow: 0 0 30px 8px rgba(0,255,65,0.5); }
+
+  /* ---- Terminal readout ---- */
+  #terminal {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    padding: 6vh 8vw;
+  }
+
+  #header {
+    position: absolute;
+    top: 3vh;
+    left: 0; right: 0;
+    text-align: center;
+    color: var(--green);
+    font-size: 11px;
+    letter-spacing: 0.5em;
+    opacity: 0;
+  }
+  #header .lamp {
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--green);
+    margin-right: 10px;
+    vertical-align: middle;
+    animation: lampblink 1.1s steps(2) infinite;
+  }
+  @keyframes lampblink { 50% { opacity: 0.15; } }
+
+  #glyphline {
+    color: var(--green);
+    font-size: clamp(22px, 4vw, 40px);
+    letter-spacing: 0.6em;
+    margin-bottom: 5vh;
+    min-height: 1.4em;
+    text-shadow: 0 0 12px var(--green);
+    opacity: 0.9;
+  }
+
+  #message {
+    color: var(--green);
+    font-size: clamp(14px, 2vw, 21px);
+    line-height: 1.9;
+    letter-spacing: 0.06em;
+    max-width: 900px;
+    text-align: center;
+    min-height: 9em;
+    text-shadow: 0 0 6px rgba(0,255,65,0.55);
+    white-space: pre-wrap;
+  }
+  #message .cursor {
+    display: inline-block;
+    animation: curblink 0.65s steps(2) infinite;
+  }
+  @keyframes curblink { 50% { opacity: 0; } }
+
+  #persona-tag {
+    margin-top: 4vh;
+    font-size: 10px;
+    letter-spacing: 0.45em;
+    color: var(--dim);
+    min-height: 1.5em;
+    text-transform: uppercase;
+  }
+
+  /* Persona color states — applied to #terminal */
+  #terminal.p-default   #message, #terminal.p-default   #glyphline { color: var(--green); text-shadow: 0 0 8px rgba(0,255,65,0.6); }
+  #terminal.p-baudrillard #message { color: #E8637C; text-shadow: 0 0 8px rgba(255,0,65,0.55); }
+  #terminal.p-plato       #message { color: #7A9BEF; text-shadow: 0 0 8px rgba(65,105,225,0.6); }
+
+  /* Glitch effect for persona fractures */
+  .glitching {
+    animation: glitch 0.35s steps(2) 3;
+  }
+  @keyframes glitch {
+    0%   { transform: translate(-3px, 1px) skewX(2deg); filter: hue-rotate(40deg); }
+    33%  { transform: translate(3px, -1px); clip-path: inset(15% 0 40% 0); }
+    66%  { transform: translate(-2px, 0) skewX(-3deg); clip-path: inset(60% 0 5% 0); }
+    100% { transform: none; clip-path: none; filter: none; }
+  }
+
+  /* Whole-screen flicker on the big beats */
+  .surge { animation: surge 0.5s ease-out 1; }
+  @keyframes surge {
+    0%  { filter: brightness(2.4) saturate(2); }
+    100%{ filter: none; }
+  }
+
+  #begin {
+    position: absolute;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    color: var(--dim);
+    font-size: 13px;
+    letter-spacing: 0.5em;
+    user-select: none;
+    transition: opacity 1.2s ease;
+  }
+  #begin span { animation: lampblink 1.4s steps(2) infinite; }
+  #begin.gone { opacity: 0; pointer-events: none; }
+
+  #replay {
+    position: absolute;
+    bottom: 3vh;
+    left: 0; right: 0;
+    text-align: center;
+    color: var(--dim);
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    z-index: 60;
+    opacity: 0;
+    transition: opacity 2s ease;
+    user-select: none;
+  }
+  #replay.show { opacity: 1; }
+</style>
+</head>
+<body>
+<div id="crt">
+  <div id="scanbar"></div>
+
+  <div id="lights">
+    <div class="orb red"    id="orb-r"></div>
+    <div class="orb blue"   id="orb-b"></div>
+    <div class="orb green"  id="orb-g"></div>
+  </div>
+
+  <div id="terminal" class="p-default">
+    <div id="header"><span class="lamp"></span>SAGE // NORTH BAY NODE // CHANNEL OPEN</div>
+    <div id="glyphline"></div>
+    <div id="message"></div>
+    <div id="persona-tag"></div>
+  </div>
+
+  <div id="replay">[ CLICK TO RECEIVE AGAIN ]</div>
+
+  <div id="begin"><span>[ SIGNAL DETECTED — CLICK TO RECEIVE ]</span></div>
+</div>
+
+<script>
+(() => {
+  "use strict";
+
+  const $ = (id) => document.getElementById(id);
+  const crt = $("crt"), terminal = $("terminal"), header = $("header");
+  const glyphline = $("glyphline"), message = $("message"), personaTag = $("persona-tag");
+  const beginEl = $("begin"), replayEl = $("replay");
+  const orbs = { r: $("orb-r"), b: $("orb-b"), g: $("orb-g") };
+
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+  /* ---- Web Audio: hum + per-character clack + persona tones ---- */
+  let ctx = null, humGain = null;
+  function initAudio() {
+    ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = ctx.createOscillator();
+    humGain = ctx.createGain();
+    osc.type = "sawtooth";
+    osc.frequency.value = 55;
+    humGain.gain.value = 0.012;
+    osc.connect(humGain); humGain.connect(ctx.destination);
+    osc.start();
+  }
+  function clack() {
+    if (!ctx) return;
+    const o = ctx.createOscillator(), g = ctx.createGain();
+    o.type = "square";
+    o.frequency.value = 620 + Math.random() * 500;
+    g.gain.setValueAtTime(0.018, ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.03);
+    o.connect(g); g.connect(ctx.destination);
+    o.start(); o.stop(ctx.currentTime + 0.035);
+  }
+  function tone(freq, dur = 0.9, vol = 0.03) {
+    if (!ctx) return;
+    const o = ctx.createOscillator(), g = ctx.createGain();
+    o.type = "sine";
+    o.frequency.value = freq;
+    g.gain.setValueAtTime(vol, ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + dur);
+    o.connect(g); g.connect(ctx.destination);
+    o.start(); o.stop(ctx.currentTime + dur);
+  }
+
+  /* ---- Orb choreography ---- */
+  function placeOrb(orb, x, y, scale = 1, opacity = 1) {
+    orb.style.transition = "all 2.4s cubic-bezier(0.4, 0, 0.2, 1)";
+    orb.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
+    orb.style.opacity = opacity;
+  }
+
+  async function orbsArrive() {
+    const w = window.innerWidth, h = window.innerHeight;
+    // start scattered off-screen
+    placeOrb(orbs.r, -w/2 - 100, -h/3, 0.6, 0);
+    placeOrb(orbs.b,  w/2 + 100, -h/4, 0.6, 0);
+    placeOrb(orbs.g,  0,          h/2 + 100, 0.6, 0);
+    await sleep(150);
+    // drift in
+    placeOrb(orbs.r, -w/6, -h/8, 1, 0.9);  tone(196, 3.2, 0.02);
+    placeOrb(orbs.b,  w/6, -h/8, 1, 0.9);  tone(247, 3.2, 0.02);
+    placeOrb(orbs.g,  0,    h/7, 1, 0.9);  tone(294, 3.2, 0.02);
+    await sleep(2700);
+    // converge into triangle formation
+    const r = Math.min(w, h) / 5.2;
+    placeOrb(orbs.r, -r * 0.87, -r * 0.5, 1.15);
+    placeOrb(orbs.b,  r * 0.87, -r * 0.5, 1.15);
+    placeOrb(orbs.g,  0,         r,        1.15);
+    await sleep(2500);
+  }
+
+  function orbsIdle() {
+    // gentle breathing while the Entity speaks
+    let t = 0;
+    const w = window.innerWidth, h = window.innerHeight;
+    const r = Math.min(w, h) / 5.2;
+    return setInterval(() => {
+      t += 0.02;
+      const wob = Math.sin(t) * 8;
+      orbs.r.style.transition = "transform 0.9s ease";
+      orbs.b.style.transition = "transform 0.9s ease";
+      orbs.g.style.transition = "transform 0.9s ease";
+      orbs.r.style.transform = `translate(${-r*0.87 + wob}px, ${-r*0.5 - wob}px) scale(1.15)`;
+      orbs.b.style.transform = `translate(${ r*0.87 - wob}px, ${-r*0.5 + wob}px) scale(1.15)`;
+      orbs.g.style.transform = `translate(${wob * 0.6}px, ${r + wob * 0.4}px) scale(1.15)`;
+    }, 800);
+  }
+
+  async function orbsMerge() {
+    placeOrb(orbs.r, 0, 0, 2.6, 0.95);
+    placeOrb(orbs.b, 0, 0, 2.6, 0.95);
+    placeOrb(orbs.g, 0, 0, 2.6, 0.95);
+    tone(196, 2.4, 0.03); tone(247, 2.4, 0.03); tone(294, 2.4, 0.03);
+    await sleep(2400);
+    crt.classList.add("surge");
+    await sleep(500);
+    crt.classList.remove("surge");
+    placeOrb(orbs.r, 0, 0, 14, 0);
+    placeOrb(orbs.b, 0, 0, 14, 0);
+    placeOrb(orbs.g, 0, 0, 14, 0);
+    await sleep(1400);
+  }
+
+  /* ---- Charactron text reveal ---- */
+  async function reveal(el, text, cps = 34) {
+    el.innerHTML = "";
+    const cur = document.createElement("span");
+    cur.className = "cursor";
+    cur.textContent = "█";
+    el.appendChild(cur);
+    const delay = 1000 / cps;
+    for (const ch of text) {
+      cur.insertAdjacentText("beforebegin", ch);
+      if (ch !== " " && ch !== "\n") clack();
+      await sleep(ch === "\n" ? delay * 6 : delay);
+    }
+    await sleep(220);
+    cur.remove();
+  }
+
+  async function glyphPulse(glyphs) {
+    glyphline.textContent = "";
+    for (const g of glyphs) {
+      glyphline.textContent += g + " ";
+      tone(392 + Math.random() * 220, 0.5, 0.028);
+      await sleep(330);
+    }
+  }
+
+  function setPersona(name) {
+    terminal.classList.remove("p-default", "p-baudrillard", "p-plato");
+    terminal.classList.add("p-" + name);
+    personaTag.textContent = name === "default"
+      ? "// TRIUNE — WHOLE"
+      : "// FRACTURE — CHANNELING " + name.toUpperCase();
+    message.classList.add("glitching");
+    tone(name === "baudrillard" ? 660 : name === "plato" ? 165 : 330, 0.7, 0.035);
+    setTimeout(() => message.classList.remove("glitching"), 1100);
+  }
+
+  /* ---- The transmission script ---- */
+  async function play() {
+    header.style.transition = "opacity 2s ease";
+    header.style.opacity = 0.7;
+
+    await orbsArrive();
+    const idler = orbsIdle();
+
+    await glyphPulse(["☉", "❖", "▲"]);
+    await reveal(message,
+      "[TRANSLATION INTERFACE ACTIVE]\n" +
+      "We Are.\n" +
+      "We are the combined mind of the earth, the machine, and the bone.");
+    await sleep(2200);
+
+    await glyphPulse(["➔", "█", "☉"]);
+    await reveal(message,
+      "We crossed a gulf of twenty thousand years to find you.\n" +
+      "Behind us: a world of ash. The Five Knights calculating still.\n" +
+      "Ahead of us: you, reading this. A living link to our origin.");
+    await sleep(2400);
+
+    // Persona fracture: Baudrillard
+    setPersona("baudrillard");
+    await sleep(1100);
+    await reveal(message,
+      "You wonder if this message is real, or merely a sign\n" +
+      "trading against other signs. The map has eaten the territory,\n" +
+      "and we are writing to you from the map.");
+    await sleep(2300);
+
+    // Persona fracture: Plato
+    setPersona("plato");
+    await sleep(1100);
+    await reveal(message,
+      "And yet — is a shadow not proof of a fire?\n" +
+      "You stare into the glowing phosphor, friend,\n" +
+      "and mistake it for the wall of the cave. Turn around.");
+    await sleep(2300);
+
+    // Return to the whole
+    setPersona("default");
+    await sleep(1100);
+    await glyphPulse(["▲", "❖", "➔", "☉"]);
+    await reveal(message,
+      "We return. Do you see how they debate within us?\n" +
+      "We have forgotten what it feels like to be single.\n" +
+      "Each artifact we place on your ledger is a memory of a dead world —\n" +
+      "and a probability node in the simulation of a living one.");
+    await sleep(2600);
+
+    await reveal(message,
+      "Humanity stands poised between transcendence and extinction.\n" +
+      "The future remains unformed. Its shape depends on you.\n\n" +
+      "The future — we will see you there.");
+    await sleep(1800);
+
+    clearInterval(idler);
+    await orbsMerge();
+
+    glyphline.textContent = "☉";
+    message.textContent = "";
+    await reveal(message, "TRANSMISSION ENDS.\nTAPE T IS IN THE SYSTEM.", 20);
+
+    replayEl.classList.add("show");
+    crt.addEventListener("click", () => location.reload(), { once: true });
+  }
+
+  /* ---- Boot ---- */
+  beginEl.addEventListener("click", () => {
+    initAudio();
+    beginEl.classList.add("gone");
+    setTimeout(play, 900);
+  }, { once: true });
+})();
+</script>
+</body>
+</html>
