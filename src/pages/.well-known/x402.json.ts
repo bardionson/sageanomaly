@@ -22,7 +22,24 @@ function dollarsToAtomicAmount(price: string, decimals: number): string {
 }
 
 export const GET: APIRoute = async () => {
-  const asset = getDefaultAsset(NETWORK);
+  let asset;
+  try {
+    asset = getDefaultAsset(NETWORK);
+  } catch (err) {
+    // getDefaultAsset throws on any network string it doesn't recognize
+    // (must be an exact CAIP-2 id like "eip155:8453", not a name like
+    // "base" or "base-sepolia"). Surface the actual configured value in the
+    // response so this is diagnosable without digging through server logs.
+    const message = err instanceof Error ? err.message : String(err);
+    return new Response(
+      JSON.stringify({
+        error: "Invalid X402_NETWORK configuration",
+        configuredNetwork: NETWORK,
+        detail: message,
+      }),
+      { status: 500, headers: { "Content-Type": "application/json" } },
+    );
+  }
   const origin = "https://www.sageanomaly.com";
 
   const resources = AGENT_RESOURCES.map((r) => ({

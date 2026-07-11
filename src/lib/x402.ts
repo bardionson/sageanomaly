@@ -36,7 +36,11 @@ export type Network = `${string}:${string}`;
 // process.env, not import.meta.env: this only runs in the server-rendered
 // endpoint (prerender = false), and process.env avoids any ambiguity around
 // Vite's PUBLIC_-prefix client-exposure rules for non-public secrets.
-export const NETWORK = (process.env.X402_NETWORK ?? "eip155:84532") as Network;
+// .trim() defensively: a trailing space/newline pasted into a Vercel env var
+// field is invisible in the dashboard but makes an exact-match network
+// lookup (e.g. @x402/evm's getDefaultAsset) fail with a confusing
+// "No default asset configured" error instead of an obvious one.
+export const NETWORK = (process.env.X402_NETWORK?.trim() || "eip155:84532") as Network;
 export const PAY_TO = process.env.X402_PAY_TO_ADDRESS;
 
 let cachedServer: x402ResourceServer | null = null;
