@@ -1,5 +1,6 @@
 import type { APIRoute } from "astro";
 import { getDefaultAsset } from "@x402/evm";
+import { x402Version } from "@x402/core";
 import { NETWORK, PAY_TO } from "../../lib/x402";
 import { AGENT_RESOURCES } from "../../lib/agent-resources";
 
@@ -61,7 +62,7 @@ export const GET: APIRoute = async () => {
     ],
   }));
 
-  return new Response(JSON.stringify({ x402Version: 1, resources }, null, 2), {
+  return new Response(JSON.stringify({ x402Version, resources }, null, 2), {
     headers: { "Content-Type": "application/json" },
   });
 };
