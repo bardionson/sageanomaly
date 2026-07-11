@@ -6,7 +6,7 @@ import { facilitator as coinbaseFacilitator } from "@coinbase/x402";
 
 // @x402/core doesn't re-export its `Network` type from any public subpath;
 // it's a CAIP-2 id shaped `${namespace}:${reference}` (e.g. "eip155:84532").
-type Network = `${string}:${string}`;
+export type Network = `${string}:${string}`;
 
 /**
  * Shared x402 "seller" gate for agent-only Astro API endpoints. There's no
@@ -36,8 +36,8 @@ type Network = `${string}:${string}`;
 // process.env, not import.meta.env: this only runs in the server-rendered
 // endpoint (prerender = false), and process.env avoids any ambiguity around
 // Vite's PUBLIC_-prefix client-exposure rules for non-public secrets.
-const NETWORK = (process.env.X402_NETWORK ?? "eip155:84532") as Network;
-const PAY_TO = process.env.X402_PAY_TO_ADDRESS;
+export const NETWORK = (process.env.X402_NETWORK ?? "eip155:84532") as Network;
+export const PAY_TO = process.env.X402_PAY_TO_ADDRESS;
 
 let cachedServer: x402ResourceServer | null = null;
 let initPromise: Promise<void> | null = null;
@@ -94,6 +94,27 @@ export interface AgentRouteConfig {
  * status — never charge for a failed response.
  */
 export async function withPayment(
+  req: Request,
+  routeConfig: AgentRouteConfig,
+  handler: () => Promise<Response>,
+): Promise<Response> {
+  // Never let an unexpected throw escape to the framework: Astro's production
+  // behavior for an uncaught endpoint error (with no custom 500 page) is an
+  // EMPTY-BODY 500 — undiagnosable from the outside. Fail closed with a JSON
+  // error carrying the real message instead.
+  try {
+    return await withPaymentInner(req, routeConfig, handler);
+  } catch (err) {
+    console.error("x402 withPayment unexpected failure:", err);
+    const message = err instanceof Error ? err.message : String(err);
+    return new Response(
+      JSON.stringify({ error: "x402 processing failed", detail: message }),
+      { status: 500, headers: { "Content-Type": "application/json" } },
+    );
+  }
+}
+
+async function withPaymentInner(
   req: Request,
   routeConfig: AgentRouteConfig,
   handler: () => Promise<Response>,

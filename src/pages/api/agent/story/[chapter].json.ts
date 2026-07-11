@@ -1,6 +1,7 @@
 import type { APIRoute } from "astro";
 import { withPayment } from "../../../../lib/x402";
 import { chapters, getChapterContent } from "../../../../lib/story-content";
+import { AGENT_RESOURCES } from "../../../../lib/agent-resources";
 
 // Opts this single endpoint out of static prerendering — every other page on
 // the site stays prerendered/static as before (see astro.config.mjs).
@@ -24,12 +25,11 @@ export const GET: APIRoute = async ({ request, params }) => {
     });
   }
 
+  const resource = AGENT_RESOURCES.find((r) => r.path === `/api/agent/story/${meta.slug}.json`)!;
+
   return withPayment(
     request,
-    {
-      price: "$1.00",
-      description: `Full chapter text: "${meta.title}" (Chapter ${meta.chapterNum})`,
-    },
+    { price: resource.price, description: resource.description },
     async () => {
       const content = getChapterContent(meta.slug);
       if (content === null) {
