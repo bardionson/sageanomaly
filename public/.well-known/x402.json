@@ -11,6 +11,10 @@
           "scheme": "exact",
           "network": "eip155:84532",
           "payTo": "0xYOUR_WALLET_ADDRESS_HERE",
+          "asset": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+          "amount": "10000",
+          "maxTimeoutSeconds": 60,
+          "extra": { "name": "USDC", "version": "2" },
           "price": "$0.01"
         }
       ]
@@ -25,6 +29,10 @@
           "scheme": "exact",
           "network": "eip155:84532",
           "payTo": "0xYOUR_WALLET_ADDRESS_HERE",
+          "asset": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+          "amount": "1000000",
+          "maxTimeoutSeconds": 60,
+          "extra": { "name": "USDC", "version": "2" },
           "price": "$1.00"
         }
       ]
@@ -39,6 +47,10 @@
           "scheme": "exact",
           "network": "eip155:84532",
           "payTo": "0xYOUR_WALLET_ADDRESS_HERE",
+          "asset": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+          "amount": "1000000",
+          "maxTimeoutSeconds": 60,
+          "extra": { "name": "USDC", "version": "2" },
           "price": "$1.00"
         }
       ]
@@ -53,6 +65,10 @@
           "scheme": "exact",
           "network": "eip155:84532",
           "payTo": "0xYOUR_WALLET_ADDRESS_HERE",
+          "asset": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+          "amount": "1000000",
+          "maxTimeoutSeconds": 60,
+          "extra": { "name": "USDC", "version": "2" },
           "price": "$1.00"
         }
       ]
@@ -67,6 +83,10 @@
           "scheme": "exact",
           "network": "eip155:84532",
           "payTo": "0xYOUR_WALLET_ADDRESS_HERE",
+          "asset": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+          "amount": "1000000",
+          "maxTimeoutSeconds": 60,
+          "extra": { "name": "USDC", "version": "2" },
           "price": "$1.00"
         }
       ]

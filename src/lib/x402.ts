@@ -149,9 +149,19 @@ export async function withPayment(
   const result = await httpServer.processHTTPRequest(context);
 
   if (result.type === "payment-error") {
-    return new Response(JSON.stringify(result.response.body ?? {}), {
+    // The lib's response instructions are already spec-complete: status
+    // (402/412), headers (PAYMENT-REQUIRED challenge + Content-Type), and a
+    // body that is either a JSON-able object (API clients) or a paywall HTML
+    // string (browser requests, isHtml=true). Serve them verbatim — in
+    // particular do NOT JSON.stringify a string body, which would wrap the
+    // paywall HTML in quotes and escape it.
+    const body =
+      typeof result.response.body === "string"
+        ? result.response.body
+        : JSON.stringify(result.response.body ?? {});
+    return new Response(body, {
       status: result.response.status,
-      headers: { "Content-Type": "application/json", ...result.response.headers },
+      headers: result.response.headers,
     });
   }
 
@@ -174,10 +184,18 @@ export async function withPayment(
   );
 
   if (!settlement.success) {
-    return new Response(
-      JSON.stringify({ error: "payment settlement failed" }),
-      { status: 402, headers: { "Content-Type": "application/json" } },
-    );
+    // ProcessSettleFailureResponse carries a spec-built 402 re-challenge in
+    // .response (PAYMENT-REQUIRED header + failure details) — serve that
+    // rather than a hand-rolled body so paying clients get a machine-readable
+    // retry challenge.
+    const failureBody =
+      typeof settlement.response.body === "string"
+        ? settlement.response.body
+        : JSON.stringify(settlement.response.body ?? { error: settlement.errorReason });
+    return new Response(failureBody, {
+      status: settlement.response.status,
+      headers: settlement.response.headers,
+    });
   }
 
   const headers = new Headers(response.headers);
