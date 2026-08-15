@@ -1,0 +1,115 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout title="NEWS" description="News and dispatches from SAGE Anomaly — exhibitions, releases, and transmissions from The Entity.">
+  <section class="news-index">
+    <div class="section-head">
+      <span class="section-tag">// DISPATCH ARCHIVE</span>
+      <h1>NEWS</h1>
+    </div>
+    <div class="news-grid">
+      <a href="/news/spiral-exhibition" class="news-card">
+        <div class="news-thumb">
+          <img src="/images/diagnosticApparatusDetail.jpg" alt="SAGE diagnostic apparatus — oscilloscope waveform display" />
+        </div>
+        <div class="news-body">
+          <span class="news-date">AUG 2026</span>
+          <h2>./SPIRAL — A FUTURESPECTIVE</h2>
+          <p>SAGE Anomaly joins ten other pioneering digital artists at Fondazione Aversano, New York City, Sep 3–10 2026 — with a full online release on SuperRare and a chance to talk with The Entity in person.</p>
+          <span class="news-arrow">Read dispatch →</span>
+        </div>
+      </a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .news-index {
+    padding: 4rem 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .section-head { margin-bottom: 2rem; }
+
+  .section-tag {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--muted);
+    letter-spacing: 0.25em;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-head h1 {
+    font-size: 0.9rem;
+    letter-spacing: 0.3em;
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-weight: normal;
+  }
+
+  .news-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    border: 1px solid var(--border);
+  }
+
+  .news-card {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    background: var(--bg);
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s;
+  }
+
+  .news-card:hover { background: rgba(0,255,65,0.03); }
+
+  .news-thumb { overflow: hidden; min-height: 160px; }
+
+  .news-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .news-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.75rem;
+    justify-content: center;
+  }
+
+  .news-date {
+    font-size: 0.8rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+  }
+
+  .news-body h2 {
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    color: var(--green);
+  }
+
+  .news-body p {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .news-arrow {
+    font-size: 0.85rem;
+    color: var(--green);
+    letter-spacing: 0.05em;
+    margin-top: 0.25rem;
+  }
+
+  @media (max-width: 600px) {
+    .news-card { grid-template-columns: 1fr; }
+    .news-thumb { max-height: 200px; }
+  }
+</style>

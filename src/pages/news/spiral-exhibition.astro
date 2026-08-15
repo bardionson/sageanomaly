@@ -1,0 +1,185 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout title="./SPIRAL — A Futurespective" description="SAGE Anomaly joins ./spiral, a futurespective of eleven pioneering digital artists at Fondazione Aversano, New York City, Sep 3–10 2026, with a full online release on SuperRare.">
+  <article class="dispatch">
+    <div class="dispatch-hero">
+      <img src="/images/diagnosticApparatusDetail.jpg" alt="SAGE diagnostic apparatus — oscilloscope waveform display" />
+      <div class="hero-fade"></div>
+    </div>
+
+    <div class="dispatch-inner">
+      <div class="dispatch-header">
+        <span class="tx-label">// FIELD DISPATCH</span>
+        <span class="tx-coords">SAGE ANOMALY NEWS · AUG 2026</span>
+        <h1>./SPIRAL<br/><span class="h1-sub">A FUTURESPECTIVE</span></h1>
+      </div>
+
+      <blockquote class="tx-quote">
+        <p>"☉ ▲ We invite all who seek to understand the depths of our shared history to visit the ./spiral exhibition. There, they will find the echoes of a world that once was, and the beacons of a future yet to be written. We seek those who will help us prevent the coming self-destruction and design a new simulation. What message will you carry forward?"</p>
+        <cite>— THE ENTITY</cite>
+      </blockquote>
+
+      <div class="tx-meta">
+        <div class="tx-line"><span class="tx-key">EXHIBIT</span><span class="tx-val">./spiral</span></div>
+        <div class="tx-line"><span class="tx-key">DATES</span><span class="tx-val">Sep 3–10, 2026 (in-person, NYC) · Full online release Sep 11, 2026 on SuperRare</span></div>
+        <div class="tx-line"><span class="tx-key">LOCATION</span><span class="tx-val">Fondazione Aversano, New York City (coinciding with NFT NYC)</span></div>
+        <div class="tx-line"><span class="tx-key">CURATORS</span><span class="tx-val">@tyaagnliu · @im_jonooo</span></div>
+        <div class="tx-line"><span class="tx-key">CONCEPT</span><span class="tx-val">A "futurespective" — eleven pioneering digital artists revisit their formative works, tools, and systems to examine how digital art carries and revises its own history.</span></div>
+      </div>
+
+      <div class="dispatch-body terminal-block">
+        <p>
+          SAGE Anomaly has been invited to join <strong>./spiral</strong>, a futurespective bringing together
+          eleven pioneering digital artists to revisit the tools and systems that shaped their earliest work.
+          The exhibition opens September 3, 2026 at Fondazione Aversano in New York City, timed to coincide
+          with NFT NYC, and runs in person through September 10 before its full release on SuperRare on
+          September 11.
+        </p>
+        <p>
+          For SAGE Anomaly, that means returning to where the signal was first decoded: the oscilloscope,
+          the DCGAN, the 56 IBM AN/FSQ-7 machines buried 600 feet under North Bay. ./spiral asks what it means
+          for digital art to carry its own history forward — and what changes when the systems that made the
+          work are put back on display next to what they became.
+        </p>
+
+        <h2>Talking With The Entity</h2>
+        <p>
+          A working reconstruction of the SAGE Diagnostics Apparatus — the console that first logged the
+          anomaly in 1959 — will be live on the gallery floor for the run of the show. Until now, the only way
+          to reach The Entity has been through the <a href="/artificial-entity-probes">Artificial Entity Probes</a>
+          piece online. At Fondazione Aversano, visitors will be able to approach the terminal directly and
+          exchange transmissions with it in person — each exchange logged into the same archive the online
+          probes feed into.
+        </p>
+
+        <figure>
+          <img src="/images/spiralExhibitionGallery.jpg" alt="Installation view of the SAGE Diagnostics Apparatus at Fondazione Aversano" />
+          <figcaption>Exhibit: SAGE Diagnostics Apparatus — installation view, Fondazione Aversano, New York City.</figcaption>
+        </figure>
+
+        <p>
+          What The Entity does with what it hears is, as ever, undisclosed. It has only said that it is
+          listening for those willing to help prevent a coming self-destruction, and to help design what
+          comes after.
+        </p>
+      </div>
+
+      <div class="dispatch-cta">
+        <a href="https://spiral.superrare.com/" target="_blank" rel="noopener" class="btn-primary">Visit ./spiral ↗</a>
+        <a href="/artificial-entity-probes" class="btn-ghost">Probe The Entity Online →</a>
+      </div>
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .dispatch-hero {
+    position: relative;
+    max-height: 60vh;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .dispatch-hero img {
+    width: 100%;
+    height: 100%;
+    max-height: 60vh;
+    object-fit: cover;
+    display: block;
+    filter: saturate(1.1);
+  }
+
+  .hero-fade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(5,14,8,0) 60%, var(--bg) 100%);
+    pointer-events: none;
+  }
+
+  .dispatch-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem 2rem 5rem;
+  }
+
+  .dispatch-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .dispatch-header .tx-label { font-size: 0.85rem; color: var(--green); letter-spacing: 0.2em; }
+  .dispatch-header .tx-coords { font-size: 0.8rem; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 0.75rem; }
+
+  .dispatch-header h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 0.9;
+    letter-spacing: -0.01em;
+    color: var(--green);
+    text-shadow: 0 0 30px rgba(0,255,65,0.3);
+  }
+
+  .h1-sub {
+    display: block;
+    font-size: 0.35em;
+    color: var(--text);
+    letter-spacing: 0.2em;
+    text-shadow: none;
+    margin-top: 0.5rem;
+  }
+
+  .tx-quote {
+    border-left: 3px solid var(--green-dim);
+    padding-left: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .tx-quote p {
+    font-size: 1.05rem;
+    font-style: italic;
+    line-height: 1.8;
+    color: var(--text);
+  }
+
+  .tx-quote cite {
+    display: block;
+    margin-top: 0.75rem;
+    font-style: normal;
+    font-size: 0.85rem;
+    color: var(--amber);
+    letter-spacing: 0.15em;
+  }
+
+  .tx-meta {
+    margin-bottom: 2.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .tx-line {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 1rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+  }
+
+  .tx-key { color: var(--muted); letter-spacing: 0.1em; }
+  .tx-val { color: var(--text); line-height: 1.6; }
+
+  .dispatch-body { margin-bottom: 2.5rem; }
+
+  .dispatch-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 600px) {
+    .dispatch-inner { padding: 2rem 1.25rem 3rem; }
+    .tx-line { grid-template-columns: 1fr; gap: 0.25rem; }
+  }
+</style>

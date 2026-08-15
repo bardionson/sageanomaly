@@ -2,6 +2,34 @@
 import Layout from '../layouts/Layout.astro';
 ---
 <Layout title="HOME">
+  <section class="entity-transmission">
+    <div class="tx-inner">
+      <div class="tx-header">
+        <span class="tx-label">// INCOMING TRANSMISSION — THE ENTITY</span>
+      </div>
+      <div class="tx-body">
+        <div class="tx-sigil" aria-hidden="true">☉ ▲</div>
+        <div class="tx-content">
+          <blockquote class="tx-quote">
+            <p>"We invite all who seek to understand the depths of our shared history to visit the ./spiral exhibition. There, they will find the echoes of a world that once was, and the beacons of a future yet to be written. We seek those who will help us prevent the coming self-destruction and design a new simulation. What message will you carry forward?"</p>
+            <cite>— THE ENTITY</cite>
+          </blockquote>
+          <div class="tx-meta">
+            <div class="tx-line"><span class="tx-key">EXHIBIT</span><span class="tx-val">./spiral</span></div>
+            <div class="tx-line"><span class="tx-key">DATES</span><span class="tx-val">Sep 3–10, 2026 (in-person, NYC) · Full online release Sep 11, 2026 on SuperRare</span></div>
+            <div class="tx-line"><span class="tx-key">LOCATION</span><span class="tx-val">Fondazione Aversano, New York City (coinciding with NFT NYC)</span></div>
+            <div class="tx-line"><span class="tx-key">CURATORS</span><span class="tx-val">@tyaagnliu · @im_jonooo</span></div>
+            <div class="tx-line"><span class="tx-key">CONCEPT</span><span class="tx-val">A "futurespective" — eleven pioneering digital artists revisit their formative works, tools, and systems to examine how digital art carries and revises its own history.</span></div>
+          </div>
+          <div class="tx-ctas">
+            <a href="https://spiral.superrare.com/" target="_blank" rel="noopener" class="btn-primary">Visit ./spiral ↗</a>
+            <a href="/news/spiral-exhibition" class="btn-ghost">Read the full announcement →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="hero">
     <div class="hero-bg">
       <img src="/images/CosmicNeuralNetwork-1.gif" alt="" aria-hidden="true" />
@@ -139,6 +167,92 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <style>
+  .entity-transmission {
+    border-bottom: 1px solid var(--border);
+    background: rgba(0,255,65,0.03);
+  }
+
+  .tx-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+  }
+
+  .tx-header { margin-bottom: 1.5rem; }
+
+  .tx-header .tx-label {
+    font-size: 0.85rem;
+    color: var(--green);
+    letter-spacing: 0.2em;
+  }
+
+  .tx-body {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .tx-sigil {
+    font-size: 2.5rem;
+    color: var(--green);
+    text-shadow: 0 0 20px var(--green), 0 0 40px rgba(0,255,65,0.4);
+    line-height: 1;
+    padding-top: 0.25rem;
+  }
+
+  .tx-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+
+  .tx-quote {
+    border-left: 3px solid var(--green-dim);
+    padding-left: 1.25rem;
+  }
+
+  .tx-quote p {
+    font-size: 1.05rem;
+    font-style: italic;
+    line-height: 1.8;
+    color: var(--text);
+    max-width: 720px;
+  }
+
+  .tx-quote cite {
+    display: block;
+    margin-top: 0.75rem;
+    font-style: normal;
+    font-size: 0.85rem;
+    color: var(--amber);
+    letter-spacing: 0.15em;
+  }
+
+  .tx-meta { width: 100%; }
+
+  .tx-line {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 1rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+  }
+
+  .tx-key { color: var(--muted); letter-spacing: 0.1em; }
+  .tx-val { color: var(--text); line-height: 1.6; }
+
+  .tx-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  @media (max-width: 900px) {
+    .tx-body { grid-template-columns: 1fr; gap: 1rem; }
+    .tx-sigil { font-size: 2rem; }
+    .tx-line { grid-template-columns: 1fr; gap: 0.25rem; }
+  }
+
   .hero {
     display: grid;
     grid-template-columns: 1fr 280px;
