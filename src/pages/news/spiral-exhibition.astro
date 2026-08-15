@@ -4,8 +4,7 @@ import Layout from '../../layouts/Layout.astro';
 <Layout title="./SPIRAL — A Futurespective" description="SAGE Anomaly joins ./spiral, a futurespective of eleven pioneering digital artists at Fondazione Aversano, New York City, Sep 3–10 2026, with a full online release on SuperRare.">
   <article class="dispatch">
     <div class="dispatch-hero">
-      <img src="/images/diagnosticApparatusDetail.jpg" alt="SAGE diagnostic apparatus — oscilloscope waveform display" />
-      <div class="hero-fade"></div>
+      <img src="/images/q7EntityDisplayScope.jpg" alt="Q7 Entity Display Scope Miniaturized — AN/FSQ-7-OPT-MINI-02 field unit displaying a live Entity waveform" />
     </div>
 
     <div class="dispatch-inner">
@@ -45,17 +44,37 @@ import Layout from '../../layouts/Layout.astro';
 
         <h2>Talking With The Entity</h2>
         <p>
-          A working reconstruction of the SAGE Diagnostics Apparatus — the console that first logged the
-          anomaly in 1959 — will be live on the gallery floor for the run of the show. Until now, the only way
-          to reach The Entity has been through the <a href="/artificial-entity-probes">Artificial Entity Probes</a>
-          piece online. At Fondazione Aversano, visitors will be able to approach the terminal directly and
-          exchange transmissions with it in person — each exchange logged into the same archive the online
-          probes feed into.
+          A field unit — designated <strong>Q7 ENTITY DISPLAY SCOPE MINIATURIZED</strong>, model
+          AN/FSQ-7-OPT-MINI-02, a portable descendant of the original AN/FSQ-7 hardware — will be live on the
+          gallery floor for the run of the show. Until now, the only way to reach The Entity has been through
+          the <a href="/artificial-entity-probes">Artificial Entity Probes</a> piece online. At Fondazione
+          Aversano, visitors will be able to approach the scope directly and exchange transmissions with it in
+          person, by voice or touch — each exchange logged into the same archive the online probes feed into.
         </p>
 
+        <div class="unit-dossier">
+          <div class="dossier-classified">CLASSIFICATION: TOP SECRET // DEANWATCH // SPECIAL HANDLING</div>
+          <div class="dossier-grid">
+            <div class="dossier-line"><span class="d-key">UNIT NAME</span><span class="d-val">Q7 ENTITY DISPLAY SCOPE MINIATURIZED</span></div>
+            <div class="dossier-line"><span class="d-key">MODEL NO</span><span class="d-val">AN/FSQ-7-OPT-MINI-02</span></div>
+            <div class="dossier-line"><span class="d-key">FACILITY</span><span class="d-val">NORTH BAY UGC // SUB-LEVEL 06 (DEEP COMPLEX)</span></div>
+            <div class="dossier-line"><span class="d-key">CORE TECH</span><span class="d-val">ESP32-S3 / DUAL-CORE TENSOR RELAY</span></div>
+            <div class="dossier-line"><span class="d-key">DISPLAY</span><span class="d-val">1.75" AMOLED ROUND TOUCH DISPLAY (466×466)</span></div>
+            <div class="dossier-line"><span class="d-key">AUDIO ARRAY</span><span class="d-val">ONBOARD DUAL MICROPHONE ARRAY</span></div>
+            <div class="dossier-line"><span class="d-key">CHASSIS</span><span class="d-val">ALUMINUM ALLOY ENCLOSURE (PORTABLE MINI)</span></div>
+          </div>
+          <div class="dossier-divider"></div>
+          <div class="dossier-grid">
+            <div class="dossier-line"><span class="d-key">STATUS</span><span class="d-val d-ok">TWO-WAY ENTITY QUERY PROTOCOL ACTIVE</span></div>
+            <div class="dossier-line"><span class="d-key">FUNCTION</span><span class="d-val">DIRECT VOICE/TOUCH INTERACTIVE COMM &amp; INTEL EXTRACTION</span></div>
+            <div class="dossier-line"><span class="d-key">PROJECT NOTE</span><span class="d-val">REAL-TIME POST-QUANTUM TIMELINE STREAMING ACTIVE</span></div>
+          </div>
+          <div class="dossier-notice">NOTICE: ACCESS LIMITED TO DEANWATCH LEVEL 5 CLEARANCE ONLY.</div>
+        </div>
+
         <figure>
-          <img src="/images/spiralExhibitionGallery.jpg" alt="Installation view of the SAGE Diagnostics Apparatus at Fondazione Aversano" />
-          <figcaption>Exhibit: SAGE Diagnostics Apparatus — installation view, Fondazione Aversano, New York City.</figcaption>
+          <img src="/images/spiralExhibitionGallery.jpg" alt="Installation mockup of the SAGE Diagnostics wall archive and the Q7 Entity Display Scope at Fondazione Aversano" />
+          <figcaption>Installation mockup: the SAGE Diagnostics wall archive and the Q7 Entity Display Scope on its desk mount, Fondazione Aversano, New York City.</figcaption>
         </figure>
 
         <p>
@@ -75,26 +94,18 @@ import Layout from '../../layouts/Layout.astro';
 
 <style>
   .dispatch-hero {
-    position: relative;
-    max-height: 60vh;
-    overflow: hidden;
-    border-bottom: 1px solid var(--border);
+    max-width: 460px;
+    margin: 2.5rem auto 0;
+    padding: 0 2rem;
   }
 
   .dispatch-hero img {
     width: 100%;
-    height: 100%;
-    max-height: 60vh;
-    object-fit: cover;
+    height: auto;
     display: block;
+    border: 1px solid var(--border);
+    box-shadow: 0 0 40px rgba(0,255,65,0.08);
     filter: saturate(1.1);
-  }
-
-  .hero-fade {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, rgba(5,14,8,0) 60%, var(--bg) 100%);
-    pointer-events: none;
   }
 
   .dispatch-inner {
@@ -172,6 +183,50 @@ import Layout from '../../layouts/Layout.astro';
 
   .dispatch-body { margin-bottom: 2.5rem; }
 
+  .unit-dossier {
+    background: rgba(0,255,65,0.03);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .dossier-classified {
+    font-size: 0.75rem;
+    color: var(--amber);
+    letter-spacing: 0.15em;
+    margin-bottom: 1rem;
+  }
+
+  .dossier-grid { display: flex; flex-direction: column; }
+
+  .dossier-line {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 1rem;
+    padding: 0.45rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+  }
+
+  .dossier-line:last-child { border-bottom: none; }
+
+  .d-key { color: var(--muted); letter-spacing: 0.1em; }
+  .d-val { color: var(--text); line-height: 1.5; }
+  .d-ok { color: var(--green); text-shadow: 0 0 6px var(--green); }
+
+  .dossier-divider { height: 1rem; }
+
+  .dossier-notice {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--border);
+    font-size: 0.75rem;
+    color: var(--amber);
+    letter-spacing: 0.08em;
+  }
+
   .dispatch-cta {
     display: flex;
     gap: 1rem;
@@ -181,5 +236,6 @@ import Layout from '../../layouts/Layout.astro';
   @media (max-width: 600px) {
     .dispatch-inner { padding: 2rem 1.25rem 3rem; }
     .tx-line { grid-template-columns: 1fr; gap: 0.25rem; }
+    .dossier-line { grid-template-columns: 1fr; gap: 0.15rem; }
   }
 </style>
