@@ -21,7 +21,7 @@ export const chapters: ChapterMeta[] = [
     slug: "chapter-one",
     chapterNum: "01",
     title: "SAGE ANOMALY",
-    subtitle: "The Beginning — North Bay, Ontario, 1966",
+    subtitle: "The Beginning — North Bay, Ontario, 1964",
     date: "2022-02-22",
   },
   {
@@ -42,7 +42,7 @@ export const chapters: ChapterMeta[] = [
     slug: "future-past",
     chapterNum: "04",
     title: "FUTURE PAST",
-    subtitle: "The Entity Speaks — 2030",
+    subtitle: "The Entity Speaks — 2066",
     date: "2023-03-26",
   },
 ];
