@@ -21,7 +21,7 @@ export const chapters: ChapterMeta[] = [
     slug: "chapter-one",
     chapterNum: "01",
     title: "SAGE ANOMALY",
-    subtitle: "The Beginning — North Bay, Ontario, 1959",
+    subtitle: "The Beginning — North Bay, Ontario, 1966",
     date: "2022-02-22",
   },
   {
