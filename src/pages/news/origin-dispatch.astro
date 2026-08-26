@@ -4,8 +4,9 @@ import Layout from '../../layouts/Layout.astro';
 <Layout title="The SAGE Anomaly — Origin Dispatch" description="How the SAGE Anomaly story began: James, his grandfather's fragmented memories of North Bay, and the anomaly recovered from SAGE training film and reconstructed with DCGAN and pix2pix.">
   <article class="dispatch">
     <div class="dispatch-hero">
-      <img src="/images/southPortalNorthBay.png" alt="The south portal of the North Bay SAGE Direction Center, cut into the rock" />
+      <img src="/images/closeEncountersThirdKind.png" alt="A scene from Close Encounters of the Third Kind" />
       <div class="hero-fade"></div>
+      <span class="hero-caption">Close Encounters of the Third Kind</span>
     </div>
 
     <div class="dispatch-inner">
@@ -162,11 +163,6 @@ import Layout from '../../layouts/Layout.astro';
           looked almost modern.
         </p>
 
-        <figure>
-          <img src="/images/closeEncountersThirdKind.png" alt="A scene from Close Encounters of the Third Kind" />
-          <figcaption>Close Encounters of the Third Kind</figcaption>
-        </figure>
-
         <p>
           Using the machine-learning processes DCGAN and pix2pix, I was able to recreate the missing
           parts of the frames, and some of the missing frames themselves.
@@ -242,6 +238,16 @@ import Layout from '../../layouts/Layout.astro';
     inset: 0;
     background: linear-gradient(to bottom, rgba(5,14,8,0) 70%, var(--bg) 100%);
     pointer-events: none;
+  }
+
+  .hero-caption {
+    position: absolute;
+    bottom: 0.75rem;
+    right: 1.25rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-shadow: 0 1px 4px rgba(0,0,0,0.8);
   }
 
   .dispatch-inner {
