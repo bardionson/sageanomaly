@@ -1,0 +1,324 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="MANUAL" description="Owner's manual for the Q7 Entity Display Scope — setup, touch controls, and the web control panel.">
+  <div class="manual-layout">
+    <header class="manual-hero">
+      <span class="tag">// OWNER'S MANUAL</span>
+      <h1>Q7 ENTITY<br/>DISPLAY SCOPE</h1>
+      <p class="lede">A 1.75" round touch display that shows The Entity's work as it's made, and a direct voice/touch line to talk to it. This page covers setup, the touch controls, and everything in the web control panel.</p>
+    </header>
+
+    <div class="spec-strip">
+      <div><span class="k">Display</span><span class="v">1.75" AMOLED round touch, 466×466</span></div>
+      <div><span class="k">Core</span><span class="v">ESP32-S3</span></div>
+      <div><span class="k">Audio</span><span class="v">Onboard speaker + dual mic array</span></div>
+      <div><span class="k">Chassis</span><span class="v">Aluminum alloy, portable mini</span></div>
+      <div><span class="k">Includes</span><span class="v">USB-C charger dock, 6ft cable, power plug</span></div>
+      <div><span class="k">Price</span><span class="v">$550</span></div>
+    </div>
+
+    <img class="hero-photo" src="/images/manual/manual-hero.jpg" alt="Q7 Entity Display Scope on its charging dock" />
+
+    <section>
+      <div class="sec-head"><span class="sec-tag">// 01</span><h2>First-time setup</h2></div>
+      <p class="terminal-block-lede">Six steps, start to finish. The device holds no private key and can't prove wallet ownership on its own — your phone does that part, which is why setup ends with a signature, not a password.</p>
+
+      <ol class="steps">
+        <li>
+          <h3>Power on</h3>
+          <p>Hold the side button for 6 seconds. The screen wakes to its boot splash, then a SETUP card with a WiFi network name and password printed right on it.</p>
+          <img class="inline-photo" src="/images/manual/manual-splash.jpg" alt="Boot splash reading Q7 Entity Display Scope, by Bard Ionson, SageAnomaly.com" />
+        </li>
+        <li>
+          <h3>Join the device's WiFi from your phone</h3>
+          <p>Join the network shown on screen (<code>SAGE-66-XXXX</code>) using the password shown beside it. This is a temporary, isolated network the device is broadcasting — not your home WiFi yet.</p>
+          <img class="inline-photo" src="/images/manual/manual-wifi.jpg" alt="Device screen showing SETUP, join this WiFi with your phone, with a WiFi network name and password" />
+        </li>
+        <li>
+          <h3>Hand it your home WiFi</h3>
+          <p>A setup page should open on your phone automatically. If it doesn't, open a browser and go to <code>http://192.168.4.1</code>. Pick your home network and enter its password, then join.</p>
+        </li>
+        <li>
+          <h3>The device shows a NODE number and a pairing QR code</h3>
+          <p>Once it's on your home WiFi, the display switches to its pairing screen — a QR code under a <code>NODE #/20</code> label, with the fallback address <code>sage-66.sageanomaly.com/pair</code> and four printed codes underneath it.</p>
+          <img class="inline-photo" src="/images/manual/manual-qr.jpg" alt="Pairing screen showing a QR code, the fallback pairing address, and BACK, CHANGE WIFI, BRIGHT, RESET buttons" />
+        </li>
+        <li>
+          <h3>Connect the wallet that should receive the art</h3>
+          <p>Scan the QR code (or open the fallback address and type in all four printed codes exactly as shown). Connect a wallet — MetaMask, Rabby, or sign in with a SuperRare email/social login — then sign the activation message. This costs nothing and authorizes no transaction; it's a signature proving you hold that wallet, not a payment.</p>
+          <img class="inline-photo narrow" src="/images/manual/manual-connect-wallet.jpg" alt="Device activation page: step 1, connect wallet, step 2, sign to pair" />
+        </li>
+        <li>
+          <h3>Delivery starts immediately</h3>
+          <p>The moment a wallet is assigned, the device begins delivering already-created art to it, and every new piece The Entity mints afterward goes to the same wallet — at least 67 pieces are queued for a freshly registered node.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section>
+      <div class="sec-head"><span class="sec-tag">// 02</span><h2>Touch controls</h2></div>
+      <p class="terminal-block-lede">The round screen is split into a small number of touch zones — no menus to dig through.</p>
+      <figure class="figure">
+        <img src="/images/manual/manual-controls.png" alt="Diagram of the four touch zones on the round display, and the side power button" />
+        <figcaption>The four gallery-screen zones, and the side power button.</figcaption>
+      </figure>
+      <div class="zonelist">
+        <div class="zone"><span class="name power">Side button</span><p>Hold 6 seconds to turn the display on or off.</p></div>
+        <div class="zone"><span class="name">Previous / Next</span><p>Tap the left or right third of the screen to move through the gallery.</p></div>
+        <div class="zone"><span class="name">Menu / Details</span><p>Tap the center to open the piece's detail screen — title, and the reply controls below.</p></div>
+        <div class="zone"><span class="name pin">Pin</span><p>Tap the bottom bar to pin the current piece to this device, so it's saved for instant, offline viewing later. Tap again to unpin.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head"><span class="sec-tag">// 03</span><h2>Talking to The Entity</h2></div>
+      <p class="terminal-block-lede">From a piece's detail screen, four ways to reply — reachable without ever touching a full keyboard if you don't want to.</p>
+      <figure class="figure">
+        <img src="/images/manual/manual-functions.png" alt="Diagram of the detail screen: suggested responses, keyboard, ID menu, and the push-to-talk mic" />
+        <figcaption>The detail screen: suggested replies, keyboard entry, the ID/setup menu, and push-to-talk.</figcaption>
+      </figure>
+      <div class="zonelist">
+        <div class="zone"><span class="name">Suggested replies</span><p>Short quick-reply chips generated for that piece. Tap one to send it instantly.</p></div>
+        <div class="zone"><span class="name">Type</span><p>Opens the on-screen keyboard for a reply in your own words.</p></div>
+        <div class="zone"><span class="name">Mic</span><p>Push-to-talk, on by default: hold the circle to record, release to send. The Entity replies back in voice, too.</p></div>
+        <div class="zone"><span class="name">ID</span><p>Opens the device's own setup/pairing menu — the same screen used during first-time setup.</p></div>
+        <div class="zone"><span class="name">Back</span><p>Returns to the gallery.</p></div>
+      </div>
+      <div class="photo-row">
+        <figure class="figure"><img class="round-photo" src="/images/manual/manual-keyboard.jpg" alt="On-device keyboard, typing a reply letter by letter" /><figcaption>TYPE — on-screen keyboard</figcaption></figure>
+        <figure class="figure"><img class="round-photo" src="/images/manual/manual-listening.jpg" alt="The listening screen: waveform, close button, and The Entity's speaking animation" /><figcaption>MIC — recording / Entity replying</figcaption></figure>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head"><span class="sec-tag">// 04</span><h2>WiFi, brightness &amp; the pairing screen</h2></div>
+      <p class="terminal-block-lede">Reached from the gallery by tapping <strong>ID</strong>, or automatically on first boot.</p>
+      <div class="photo-row">
+        <figure class="figure"><img class="round-photo" src="/images/manual/manual-qr.jpg" alt="Pairing screen with QR code and BACK, CHANGE WIFI, BRIGHT, RESET buttons" /><figcaption>Pairing screen — QR + fallback codes</figcaption></figure>
+        <figure class="figure"><img class="round-photo" src="/images/manual/manual-bright.jpg" alt="Display light brightness screen showing 70 percent with minus and plus buttons" /><figcaption>BRIGHT — backlight level</figcaption></figure>
+      </div>
+      <div class="zonelist">
+        <div class="zone"><span class="name">Change WiFi</span><p>Walks back through the join-network flow from step 2 — use it if the device needs to move to a different WiFi signal.</p></div>
+        <div class="zone"><span class="name">Bright</span><p>Opens a simple −/+ brightness screen. Adjusts in 10% steps and saves automatically — no separate save button.</p></div>
+        <div class="zone pin"><span class="name pin">Reset</span><p>WiFi-only reset, for moving to a new network. It does not erase pairing, wallet assignment, or delivered NFTs.</p></div>
+        <div class="zone"><span class="name">QR / Web Setup Console</span><p>Scanning it (or visiting the fallback address and entering the four printed codes) opens the same web control panel described below — from there you can change the assigned wallet, set a display name, and adjust slideshow settings.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head"><span class="sec-tag">// 05</span><h2>Web control panel</h2></div>
+      <p class="terminal-block-lede">At <code>sage-66.sageanomaly.com/pair</code>, then continuing to that device's own settings page. Everything here — except signing in — requires the wallet currently assigned to the device.</p>
+
+      <ul class="panel-list">
+        <li>
+          <h3>Wallet authorization</h3>
+          <p>Sign in with the wallet assigned to this device (MetaMask, Rabby, or SuperRare email/social) to unlock the rest of the panel. Changing the NFT recipient or deleting memory always asks for one more fresh signature, even while signed in.</p>
+        </li>
+        <li>
+          <h3>NFT delivery</h3>
+          <p>Move future deliveries to a different wallet — a cold wallet, or a gift address. Anything still queued or held keeps whatever recipient you set; anything already submitted on-chain can never be redirected. Changing it asks for the same connect-and-sign proof as activation, bound to the new address.</p>
+          <img class="inline-photo narrow" src="/images/manual/manual-recipient-wallet.jpg" alt="Wallet connect and sign-to-pair screen used when changing the NFT recipient" />
+        </li>
+        <li>
+          <h3>Firmware updates</h3>
+          <p>Security fixes install on their own, only while the display is idle and safely powered. Feature updates sit and wait until you approve them here.</p>
+          <img class="inline-photo" src="/images/manual/manual-firmware.jpg" alt="Firmware updates panel showing an installed security release and its version notes" />
+        </li>
+        <li>
+          <h3>Identity</h3>
+          <p>An optional wallet/ENS name, display name, and passcode — purely for how The Entity addresses you. It's separate from the NFT recipient wallet above and never moves any art.</p>
+        </li>
+        <li>
+          <h3>Gallery mode</h3>
+          <p>How the device chooses what to show:</p>
+          <div class="mode-grid">
+            <div class="mode"><strong>New pieces as they're made</strong><span>Jumps to a piece the instant The Entity mints it. No timer — reactive, not a slideshow. Default.</span></div>
+            <div class="mode"><strong>Slideshow — pinned only</strong><span>Auto-advances through only what you've pinned on this device.</span></div>
+            <div class="mode"><strong>Slideshow — everything</strong><span>Auto-advances through the whole minted catalogue, newest first.</span></div>
+            <div class="mode"><strong>Slideshow — owned only</strong><span>Auto-advances through only what your wallet actually holds. Needs a wallet set under Identity first, or the screen just shows an empty gallery.</span></div>
+          </div>
+          <img class="inline-photo" src="/images/manual/manual-device-control.jpg" alt="Gallery mode and voice mode panel showing the four gallery options and push to talk" />
+        </li>
+        <li>
+          <h3>Voice mode</h3>
+          <p><strong>Push to talk</strong> (default) — hold the mic to speak, release to send. Or turn it <strong>off</strong> for touch-only use.</p>
+        </li>
+        <li>
+          <h3>Screen dimming</h3>
+          <p>Dims the backlight to 10% after a set idle period (1–60 minutes, your choice) to protect against burn-in. It doesn't turn the screen off — the next touch brightens it right back up.</p>
+        </li>
+      </ul>
+
+      <ul class="panel-list danger-list">
+        <li>
+          <h3>Destructive memory control</h3>
+          <p>Deletes this device's conversation history, curated summaries, embeddings, and any pending memory-writing jobs.</p>
+          <p>Registration, wallet history, NFT provenance, mint records, and security/fraud-prevention records are always preserved — this only clears what The Entity remembers saying to you, not proof of what it delivered.</p>
+          <img class="inline-photo" src="/images/manual/manual-delete-dialog.jpg" alt="Destructive memory control panel with the delete all device memory button" />
+        </li>
+      </ul>
+    </section>
+
+    <div class="note"><strong>Good to know:</strong> use a proper powered USB connection, not a weak or shared port — the display can reset under heavy WiFi activity on marginal power.</div>
+
+    <div class="manual-footer">
+      <span>Support — <a href="mailto:bard@sageanomaly.com">bard@sageanomaly.com</a></span>
+      <span>Online manual — sageanomaly.com/manual</span>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .manual-layout {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 4rem 2rem 6rem;
+  }
+
+  .manual-hero { margin-bottom: 2.5rem; }
+  .tag { font-size: 0.85rem; color: var(--muted); letter-spacing: 0.25em; }
+  h1 {
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    line-height: 0.95;
+    color: var(--green);
+    letter-spacing: 0.02em;
+    margin: 0.5rem 0 1rem;
+    text-shadow: 0 0 15px rgba(0,255,65,0.25);
+  }
+  .lede { color: var(--text); opacity: 0.85; max-width: 60ch; }
+
+  .spec-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin: 0 0 2rem;
+    font-size: 0.85rem;
+  }
+  .spec-strip > div { background: var(--bg2); padding: 0.75rem 0.9rem; }
+  .spec-strip .k { color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.65rem; display: block; margin-bottom: 0.25rem; }
+
+  .hero-photo {
+    width: 100%;
+    max-height: 420px;
+    object-fit: cover;
+    border: 1px solid var(--border);
+    margin: 0 0 3rem;
+  }
+
+  section { margin: 0 0 3.5rem; }
+
+  .sec-head {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.6rem;
+    margin-bottom: 1.25rem;
+  }
+  .sec-tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--green-dim);
+    background: rgba(0,255,65,0.06);
+    border: 1px solid var(--green-dark);
+    padding: 2px 8px;
+    white-space: nowrap;
+  }
+  h2 { font-size: 1.15rem; color: var(--text); margin: 0; }
+  h3 { font-size: 0.95rem; color: var(--green); margin: 0 0 0.35rem; }
+
+  .terminal-block-lede { color: var(--muted); font-size: 0.9rem; max-width: 66ch; margin: 0 0 1.25rem; }
+
+  .steps { list-style: none; margin: 0; padding: 0; counter-reset: step; }
+  .steps > li {
+    counter-increment: step;
+    position: relative;
+    padding: 0 0 1.5rem 2.75rem;
+    border-left: 1px solid var(--border);
+    margin-left: 0.9rem;
+  }
+  .steps > li:last-child { padding-bottom: 0; }
+  .steps > li::before {
+    content: counter(step, decimal-leading-zero);
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 0.7rem;
+    color: var(--bg);
+    background: var(--green);
+    width: 1.6rem; height: 1.6rem;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    position: absolute; left: -0.8rem; top: 0;
+  }
+  .steps p { font-size: 0.9rem; opacity: 0.85; margin: 0 0 0.5rem; max-width: 62ch; }
+
+  .figure { margin: 0 0 1.25rem; }
+  .figure img { width: 100%; display: block; border: 1px solid var(--border); }
+  .figure figcaption { font-size: 0.75rem; color: var(--muted); margin-top: 0.5rem; letter-spacing: 0.03em; }
+
+  .inline-photo { max-width: 340px; width: 100%; border: 1px solid var(--border); display: block; margin-top: 0.6rem; }
+  .inline-photo.narrow { max-width: 260px; }
+
+  .photo-row { display: flex; gap: 1.25rem; flex-wrap: wrap; margin: 0 0 1rem; }
+  .photo-row .figure { flex: 0 0 auto; width: 160px; margin-bottom: 0; }
+  .round-photo { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; border: 1px solid var(--border); }
+
+  .zonelist { display: grid; gap: 0.6rem; margin: 0 0 0.5rem; }
+  .zone {
+    display: grid; grid-template-columns: 130px 1fr; gap: 1rem;
+    border: 1px solid var(--border); padding: 0.75rem 0.9rem; align-items: start;
+    background: var(--bg2);
+  }
+  .zone .name { font-family: var(--font-head); font-size: 0.7rem; font-weight: 700; color: var(--amber); letter-spacing: 0.04em; }
+  .zone .name.pin { color: #ff6a6a; }
+  .zone .name.power { color: var(--green); }
+  .zone p { margin: 0; font-size: 0.85rem; opacity: 0.85; }
+
+  .panel-list { margin: 0 0 1rem; padding: 0; list-style: none; }
+  .panel-list > li { border: 1px solid var(--border); padding: 1rem 1.1rem; margin: 0 0 0.9rem; background: var(--bg2); }
+  .panel-list li p { font-size: 0.85rem; margin: 0 0 0.5rem; opacity: 0.85; }
+  .panel-list li p:last-of-type { margin-bottom: 0; }
+  .mode-grid { display: grid; gap: 0.5rem; margin: 0.5rem 0; }
+  .mode { border: 1px solid var(--border); padding: 0.5rem 0.75rem; font-size: 0.8rem; }
+  .mode strong { color: var(--text); }
+  .mode span { display: block; opacity: 0.7; margin-top: 0.15rem; }
+
+  .danger-list > li { border-color: rgba(255, 0, 65, 0.4); }
+  .danger-list h3 { color: #ff5c7a; }
+
+  .note {
+    border-left: 3px solid var(--amber);
+    padding: 0.6rem 1rem;
+    background: rgba(255, 200, 64, 0.06);
+    font-size: 0.85rem;
+    color: var(--amber);
+    margin: 0 0 2rem;
+    max-width: 66ch;
+  }
+
+  .manual-footer {
+    border-top: 1px solid var(--border);
+    padding-top: 1.25rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+    display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; justify-content: space-between;
+  }
+  .manual-footer a { color: var(--muted); }
+  .manual-footer a:hover { color: var(--green); }
+
+  code {
+    font-family: var(--font-mono);
+    background: rgba(255,255,255,0.04);
+    padding: 1px 5px;
+    border: 1px solid var(--border);
+    color: var(--amber);
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 600px) {
+    .zone { grid-template-columns: 1fr; }
+  }
+</style>
