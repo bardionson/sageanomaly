@@ -22,7 +22,8 @@ import Layout from '../layouts/Layout.astro';
             <div class="tx-line"><span class="tx-key">CONCEPT</span><span class="tx-val">A "futurespective" — eleven pioneering digital artists revisit their formative works, tools, and systems to examine how digital art carries and revises its own history.</span></div>
           </div>
           <div class="tx-ctas">
-            <a href="https://spiral.superrare.com/" target="_blank" rel="noopener" class="btn-primary">Visit ./spiral ↗</a>
+            <a href="https://spiral-bardionson.superrare.com/" target="_blank" rel="noopener" class="btn-primary">Explore my ./spiral artwork ↗</a>
+            <a href="/display-scope/" class="btn-ghost">Explore the Display Scope →</a>
             <a href="/news/spiral-exhibition" class="btn-ghost">Read the full announcement →</a>
           </div>
         </div>
@@ -47,9 +48,9 @@ import Layout from '../layouts/Layout.astro';
       </p>
       <div class="hero-ctas">
         <a href="https://spiral-bardionson.superrare.com/?chat=1&amp;utm_source=sageanomaly&amp;utm_medium=website&amp;utm_campaign=entity&amp;utm_content=home" class="btn-primary">Talk with The Entity →</a>
-        <a href="/story" class="btn-primary">Read The Story →</a>
+        <a href="/display-scope/" class="btn-primary">Explore the Q7 Display Scope →</a>
+        <a href="/story" class="btn-ghost">Read The Story →</a>
         <a href="/art" class="btn-ghost">View The Art</a>
-        <a href="/display-scope/" class="btn-ghost">Explore the Q7 Display Scope →</a>
       </div>
     </div>
     <div class="hero-sidebar">
@@ -60,6 +61,23 @@ import Layout from '../layouts/Layout.astro';
         <div class="sys-line"><span class="sys-key">PLATFORM</span><span class="sys-val">ASYNC.ART</span></div>
         <div class="sys-line"><span class="sys-key">EDITIONS</span><span class="sys-val">303</span></div>
         <div class="sys-line"><span class="sys-key">SIGNAL</span><span class="sys-val sys-ok">ACTIVE</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="scope-feature" aria-labelledby="scope-heading">
+    <a href="/display-scope/" class="scope-photo" aria-label="See the Q7 Display Scope in action">
+      <img src="/display-scope/assets/device-angle.png" width="1254" height="1254" alt="Q7 Entity Display Scope on its desktop dock" loading="lazy" />
+    </a>
+    <div class="scope-copy">
+      <span class="section-tag">// A PHYSICAL ART DEVICE + NFT COLLECTION</span>
+      <h2 id="scope-heading">Q7 ENTITY<br/>DISPLAY SCOPE</h2>
+      <p>Bring The Entity into your space. Browse the art, talk with The Entity, and watch new work arrive on a device made to live on your desk.</p>
+      <p class="scope-included">Each Display Scope includes a mint pass for at least <strong>66 NFT artworks</strong>, delivered over time.</p>
+      <p>The device is a separate purchase. You can also talk with The Entity and collect individual artworks in the web app.</p>
+      <div class="scope-actions">
+        <a href="/display-scope/" class="btn-primary">See the device in action →</a>
+        <a href="https://spiral-bardionson.superrare.com/" class="btn-ghost">Explore the art web app ↗</a>
       </div>
     </div>
   </section>
@@ -394,6 +412,25 @@ import Layout from '../layouts/Layout.astro';
   .sys-ok { color: var(--green); text-shadow: 0 0 6px var(--green); }
   .sys-warn { color: var(--amber); }
 
+  .scope-feature {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    align-items: center;
+    gap: 3rem;
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .scope-photo { display: block; background: #101410; border: 1px solid var(--border); }
+  .scope-photo img { display: block; width: 100%; height: auto; }
+  .scope-copy { display: flex; flex-direction: column; align-items: flex-start; gap: 1.25rem; min-width: 0; }
+  .scope-copy h2 { font-size: clamp(1.25rem, 3vw, 2.5rem); line-height: 1.25; color: var(--text); }
+  .scope-copy p { color: var(--muted); font-size: 0.95rem; }
+  .scope-copy .scope-included { color: var(--text); }
+  .scope-included strong { color: var(--amber); }
+  .scope-actions { display: flex; flex-wrap: wrap; gap: 1rem; }
+
   .lore-strip {
     border-bottom: 1px solid var(--border);
     background: rgba(0,255,65,0.02);
@@ -583,6 +620,8 @@ import Layout from '../layouts/Layout.astro';
   .async-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
   @media (max-width: 900px) {
+    .scope-feature { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 2rem; }
+    .scope-photo { width: 100%; max-width: 420px; margin: 0 auto; }
     .hero { grid-template-columns: 1fr; }
     .hero-sidebar { display: none; }
     .hero-content { padding: 3rem 2rem; }
